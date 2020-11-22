@@ -1,0 +1,384 @@
+import ( "ModMenu.msg" );
+
+// Used to hardcode overworld mod menu return points
+int gLocation;
+
+// Open menu
+void ModMenuDisplay(int location)
+{
+	gLocation = location;
+	OPEN_MSG_WIN();
+	MSG( Welcome );
+	int select = SEL( Mod_Menu1 );
+	
+	switch (select)
+	{
+		case 0:
+			EventSelect();
+			break;
+		case 1:
+			FieldSelect();
+			break;
+		case 2:
+			BattleSelect();
+			break;
+		case 3:
+			select = SEL( Mod_Menu2 );
+			switch (select)
+			{
+				case 0:
+					BGMSelect();
+					break;
+				case 1:
+					MovieSelect();
+					break;
+				case 2:
+					DungeonSelect();
+					break;
+				case 3:
+					select = SEL( Mod_Menu3 );
+					switch (select)
+					{
+						case 0:
+							Facilities_Menu_1();
+							break;
+						case 1:
+							CLOSE_MSG_WIN();
+							FastTravel();
+							break;
+						case 2:
+							Save();
+							break;
+						case 3:
+							break;
+					}
+					break;
+			}
+			break;
+	}
+	CLOSE_MSG_WIN();
+}
+
+void Facilities_Menu_1()
+{
+	int select = SEL( Facilities_Menu1 );
+	switch (select)
+	{
+		case 0:
+			CLOSE_MSG_WIN();
+			VelvetRoom();
+			break;
+		case 1:
+			CLOSE_MSG_WIN();
+			Police();
+			break;
+		case 2:
+			CLOSE_MSG_WIN();
+			Pharmacy();
+			break;
+		case 3:
+			Facilities_Menu_2();
+			break;
+	}
+}
+
+void Facilities_Menu_2()
+{
+	int select = SEL( Facilities_Menu2 );
+	switch (select)
+	{
+		case 0:
+			CLOSE_MSG_WIN();
+			Antique();
+			break;
+		case 1:
+			CLOSE_MSG_WIN();
+			Accessory();
+			break;
+		case 2:
+			Facilities_Menu_1();
+			break;
+		case 3:
+			break;
+	}
+}
+
+// Facility functions
+void Accessory()
+{
+	int floor = GET_FLOOR_ID();
+	CALL_SFX( 2, 8 );
+	FLD_FUNCTION_0089( 10253, 0, 0, 0, 1 );
+	FADE( 2, 0 );
+	FADE_SYNC();
+	CMN_FUNCTION_0008( 0 + 0x0400 + 0x0800 + 0x0400 + 0x0400 + 7 );
+	FUNCTION_002A( 1 );
+	FUNCTION_002B();
+	CMN_FUNCTION_0009( 0 + 0x0400 + 0x0800 + 0x0400 + 0x0400 + 7 );
+	
+	if (floor != 0) // return to current tartarus floor
+		CALL_FLOOR( floor );
+	else if (gLocation == 1)
+		CALL_FIELD( 6, 3, 3, 0 ); // return to student with glasses
+	else if (gLocation == 2)
+		CALL_FIELD( 7, 2, 0, 0 ); // return to dorm entrance
+}
+
+void Police()
+{
+	int floor = GET_FLOOR_ID();
+	
+	CALL_SFX( 2, 8 );
+    FLD_FUNCTION_0089( 10252, 0, 0, 0, 1 );
+    FADE( 2, 0 );
+    FADE_SYNC();
+	CMN_FUNCTION_0008( 0 + 0x0400 + 0x0800 + 0x0400 + 0x0400 + 7 );
+    FUNCTION_002A( 0 );
+    FUNCTION_002B();
+    CMN_FUNCTION_0009( 0 + 0x0400 + 0x0800 + 0x0400 + 0x0400 + 7 );
+    CALL_FIELD( 8, 1, 6, 0 );
+	
+	if (floor != 0) // return to current tartarus floor
+		CALL_FLOOR( floor );
+	else if (gLocation == 1)
+		CALL_FIELD( 6, 3, 3, 0 ); // return to student with glasses
+	else if (gLocation == 2)
+		CALL_FIELD( 7, 2, 0, 0 ); // return to dorm entrance
+}
+
+void Antique()
+{
+	int floor = GET_FLOOR_ID();
+	CALL_SFX( 2, 8 );
+    FLD_FUNCTION_0089( 10250, 0, 0, 0, 1 );
+    FADE( 2, 0 );
+    FADE_SYNC();
+    CMN_FUNCTION_0008( 0 + 0x0400 + 0x0800 + 0x0400 + 0x0400 + 7 );
+    FUNCTION_002A( 4 );
+    FUNCTION_002B();
+    CMN_FUNCTION_0009( 0 + 0x0400 + 0x0800 + 0x0400 + 0x0400 + 7 );
+	if (floor != 0) // return to current tartarus floor
+		CALL_FLOOR( floor );
+	else if (gLocation == 1)
+		CALL_FIELD( 6, 3, 3, 0 ); // return to student with glasses
+	else if (gLocation == 2)
+		CALL_FIELD( 7, 2, 0, 0 ); // return to dorm entrance
+}
+
+void Pharmacy()
+{
+	int floor = GET_FLOOR_ID();
+	CALL_SFX( 2, 8 );
+	FLD_FUNCTION_0089( 10249, 0, 0, 0, 1 );
+	FADE( 2, 0 );
+	FADE_SYNC();
+	CMN_FUNCTION_0008( 0 + 0x0400 + 0x0800 + 0x0400 + 0x0400 + 7 );
+	FUNCTION_002A( 2 );
+	FUNCTION_002B();
+	CMN_FUNCTION_0009( 0 + 0x0400 + 0x0800 + 0x0400 + 0x0400 + 7 );
+	if (floor != 0) // return to current tartarus floor
+		CALL_FLOOR( floor );
+	else if (gLocation == 1)
+		CALL_FIELD( 6, 3, 3, 0 ); // return to student with glasses
+	else if (gLocation == 2)
+		CALL_FIELD( 7, 2, 0, 0 ); // return to dorm entrance
+}
+
+void VelvetRoom()
+{
+	CMN_FUNCTION_0008( 0 + 0x0400 + 0x0800 + 1 );
+	CALL_SFX( 2, 0x20 );
+	FLD_FUNCTION_0089( 10243, 1, 0, 0, 1 );
+	FADE( 6, 30 );
+	FADE_SYNC();
+	CALL_FIELD( 8, 3, 0, 0 );
+	// currrently returns to tartarus entrance.
+	// Would have to hook function in f008.bf to adjust return point
+}
+
+// Brings up fast travel map
+void FastTravel()
+{
+	CMN_FUNCTION_0008( 0 + 0x0400 + 0x0800 + 19 );
+	FADE( 1, 0 );
+	FADE_SYNC();
+	FUNCTION_0077( 0 );
+}
+
+// Save wherever you can call mod menu
+// Seems to not save exact floor in tartarus but the first floor of the block
+void Save()
+{
+	FADE( 5, 10 );
+	FADE_SYNC();
+	FUNCTION_018F();
+	FUNCTION_0190();
+	FUNCTION_000D( 0 );
+	FADE_SYNC();
+}
+
+// Call functions
+void BattleSelect()
+{
+	int floor = GET_FLOOR_ID();
+	int major = Get_Number(3, SelectID3);
+	CLOSE_MSG_WIN();
+	CALL_SFX( 3, 0 );
+	FUNCTION_01C2();
+	FUNCTION_01C3();
+	CALL_BATTLE( major );
+	FADE( 3, 0 );
+	FADE_SYNC();
+	FUNCTION_00A6();
+	FUNCTION_01E7();
+	FUNCTION_01A5();
+	if (floor != 0) // return to current tartarus floor
+		CALL_FLOOR( floor );
+	else if (gLocation == 1)
+		CALL_FIELD( 6, 3, 3, 0 ); // return to student with glasses
+	else if (gLocation == 2)
+		CALL_FIELD( 7, 2, 0, 0 ); // return to dorm entrance
+}
+
+// Call floor
+void DungeonSelect()
+{
+	int major = Get_Number(3, SelectFloor);
+	CLOSE_MSG_WIN();
+	FADE( 3, 0 );
+	FADE_SYNC();
+	CALL_FLOOR( major );
+}
+
+void MovieSelect()
+{
+	int floor = GET_FLOOR_ID();
+	int major = Get_Number(2, SelectID2);
+	CLOSE_MSG_WIN();
+	// silence
+	CALL_BGM(999);
+	CALL_MOVIE(major);
+	NS_MOVIE_SYNC();
+	FADE( 3, 0 );
+	FADE_SYNC();
+	if (floor != 0)
+		CALL_FLOOR( floor );
+	else if (gLocation == 1)
+		CALL_FIELD( 6, 3, 3, 0 );
+	else if (gLocation == 2)
+		CALL_FIELD( 7, 2, 0, 0 );
+}
+
+void EventSelect()
+{
+	int floor = GET_FLOOR_ID();
+	int major = Get_Number(3, SelectMajor);
+	int minor = Get_Number(3, SelectMinor);
+	CLOSE_MSG_WIN();
+	FADE( 3, 0 );
+	FADE_SYNC();
+	CMN_FUNCTION_0008( 0 + 0x0400 + 0x0800 + 0x0400 + 0x0400 + 7 );
+	CALL_EVENT( major, minor, 0);
+	FADE( 3, 0 );
+	FADE_SYNC();
+	if (floor != 0)
+		CALL_FLOOR( floor );
+	else if (gLocation == 1)
+		CALL_FIELD( 6, 3, 3, 0 );
+	else if (gLocation == 2)
+		CALL_FIELD( 7, 2, 0, 0 );
+}
+
+void FieldSelect()
+{
+	int major = Get_Number(3, SelectMajor);
+	int minor = Get_Number(3, SelectMinor);
+	int pos = Get_Number(2, SelectPosition);
+	FADE( 3, 0 );
+	FADE_SYNC();
+	CMN_FUNCTION_0008( 0 + 0x0400 + 0x0800 + 0x0400 + 0x0400 + 7 );
+	CALL_FIELD( major, minor, pos, 0 );
+}
+
+void BGMSelect()
+{
+	int major = Get_Number(3, SelectID3);
+	CLOSE_MSG_WIN();
+	CALL_BGM(major);
+}
+
+// Used for getting id's for calling functions
+int Get_Number(int digitNum, int helpText)
+{
+	tryagain:
+	MSG( helpText );
+	int digit = 0;
+	int n = 0;
+	_OpenNumMenu:
+	while (n < digitNum)
+	{
+		int select = Page_1();
+		digit *= 10;
+		digit += select;
+		n += 1;
+	}
+	
+	// Confirmation
+	SET_MSG_VAR(0, digit, 0);
+    MSG( Confirmation );
+	if (SEL(YesNo) == 1)
+		goto tryagain;
+	
+	return(digit);
+}
+
+// Pages for selecting number since select menus are small
+int Page_1()
+{
+	int select = SEL( Num_Menu1 );
+	if (select == 2)
+		return Page_2();
+	else if (select == 3)
+		return Page_5();
+	return select;
+}
+
+int Page_2()
+{
+	int select = SEL( Num_Menu2 );
+	if (select == 2)
+		return Page_3();
+	else if (select == 3)
+		return Page_1();
+	return select + 2;
+}
+
+int Page_3()
+{
+	int select = SEL( Num_Menu3 );
+	if (select == 2)
+		return Page_4();
+	else if (select == 3)
+		return Page_2();
+	return select + 4;
+}
+
+int Page_4()
+{
+	int select = SEL( Num_Menu4 );
+	if (select == 2)
+		return Page_5();
+	else if (select == 3)
+		return Page_3();
+	return select + 6;
+}
+
+int Page_5()
+{
+	int select = SEL( Num_Menu5 );
+	if (select == 2)
+		return Page_1();
+	else if (select == 3)
+		return Page_4();
+	return select + 8;
+}

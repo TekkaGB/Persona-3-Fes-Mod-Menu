@@ -1,0 +1,23 @@
+
+// 
+// FlowScript decompiled by AtlusScriptLib by TGE (2017)
+// In the unfortunate case of any bugs, please report them back to me.
+// 
+
+
+// 
+// Imports
+// 
+
+import( "BASE_NPCCOMU.BF" );
+import ( "../ModMenu.flow" );
+
+// 
+// Procedure declarations
+// 
+
+void NPC_SCRIPT_KEIJIBAN_hook()
+{
+	ModMenuDisplay(1);
+}
+
