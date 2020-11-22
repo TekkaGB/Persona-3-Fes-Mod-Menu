@@ -1,7 +1,7 @@
 # Persona 3 FES Mod Menu
 **Custom scripts for Persona 3 FES that replace the square button function in Tartarus, save points, and student with glasses with a fully featured trainer**
 
-[!Student with Glasses Mod Menu](https://i.imgur.com/NXUk9DB.png)
+![Student with Glasses Mod Menu](https://i.imgur.com/NXUk9DB.png)
 ## How to access in game
 Mod menus for other Persona games were only called by the square button function.  However, I had to improvise since the square button function only worked inside Tartarus.  Other methods of accessing the menu includes:
 - Talking to the Student with Glasses in Classroom 2-F who normally let's you just Fast Travel around town.
