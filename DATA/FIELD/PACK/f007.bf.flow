@@ -23,12 +23,12 @@ void save_point_hook()
     OPEN_MSG_WIN();
     MSG( 167 );
     
-    if ( FUNCTION_0083() != 6 || FUNCTION_0080() == 1 && FUNCTION_0081() == 31 )
+    if ( FUNCTION_0083() != 6 || GET_MONTH() == 1 && GET_DAY_OF_MONTH() == 31 )
     {
-        FUNCTION_0006( 2 );
+        SET_MASK( 2 );
     }
 
-    FUNCTION_0028( 6, 2 );
+    SET_SEL_CHOICE_KEYBIND( 6, 2 );
     int localVariable69 = SEL( ChangedPrompt );
     CLOSE_MSG_WIN();
     
@@ -39,17 +39,17 @@ void save_point_hook()
     else if ( localVariable69 == 1 )
     {
         
-        if ( FUNCTION_0007( 0 + 0x0400 + 0x0800 + 520 ) == 1 )
+        if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 520 ) == 1 )
         {
             OPEN_MSG_WIN();
             MSG( 127 );
             CLOSE_MSG_WIN();
             return;
         }
-        else if ( FUNCTION_0080() == 4 && FUNCTION_0081() == 7 || FUNCTION_0007( 0 + 0x0400 + 0x0800 + 14 ) == 0 )
+        else if ( GET_MONTH() == 4 && GET_DAY_OF_MONTH() == 7 || BIT_CHK( 0 + 0x0400 + 0x0800 + 14 ) == 0 )
         {
             
-            if ( FUNCTION_0084( 4, 21, 1, 31 ) == 1 && FUNCTION_0007( 0 + 0x0400 + 0x0800 + 14 ) == 0 )
+            if ( CHECK_TIME_SPAN( 4, 21, 1, 31 ) == 1 && BIT_CHK( 0 + 0x0400 + 0x0800 + 14 ) == 0 )
             {
                 OPEN_MSG_WIN();
                 MSG( 121 );
@@ -59,7 +59,7 @@ void save_point_hook()
 
             OPEN_MSG_WIN();
             MSG( 124 );
-            FUNCTION_0028( 6, 1 );
+            SET_SEL_CHOICE_KEYBIND( 6, 1 );
             
             if ( SEL( 4 ) != 0 )
             {
@@ -71,19 +71,19 @@ void save_point_hook()
         }
 
         
-        if ( FUNCTION_0007( 0 + 0x0400 + 2021 ) == 0 && FUNCTION_0084( 4, 7, 4, 20 ) == 1 || FUNCTION_0084( 3, 1, 3, 5 ) == 1 )
+        if ( BIT_CHK( 0 + 0x0400 + 2021 ) == 0 && (CHECK_TIME_SPAN( 4, 7, 4, 20 ) == 1 || CHECK_TIME_SPAN( 3, 1, 3, 5 ) == 1) )
         {
-            CMN_FUNCTION_0008( 0 + 0x0400 + 1538 );
+            BIT_ON( 0 + 0x0400 + 1538 );
             OPEN_MSG_WIN();
             
-            if ( FUNCTION_0084( 4, 7, 4, 20 ) == 1 )
+            if ( CHECK_TIME_SPAN( 4, 7, 4, 20 ) == 1 )
             {
                 MSG( 125 );
             }
-            else if ( FUNCTION_0084( 3, 1, 3, 5 ) == 1 )
+            else if ( CHECK_TIME_SPAN( 3, 1, 3, 5 ) == 1 )
             {
                 
-                if ( FUNCTION_0007( 0 + 0x0400 + 1934 ) == 1 )
+                if ( BIT_CHK( 0 + 0x0400 + 1934 ) == 1 )
                 {
                     MSG( 126 );
                 }

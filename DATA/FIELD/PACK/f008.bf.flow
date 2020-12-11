@@ -1,0 +1,59 @@
+
+// 
+// FlowScript decompiled by AtlusScriptLib by TGE (2017)
+// In the unfortunate case of any bugs, please report them back to me.
+// 
+
+
+// 
+// Imports
+// 
+
+import( "BASE_f008.bf" );
+
+void out_velvet_room_hook()
+{
+    FADE( 6, 30 );
+    FADE_SYNC();
+    
+    if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 0 ) == 1 )
+    {
+        BIT_OFF( 0 + 0x0400 + 0x0800 + 0 );
+        CALL_FIELD( 8, 9, 1, 0 );
+        return;
+    }
+    else if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 1 ) == 1 )
+    {
+        BIT_OFF( 0 + 0x0400 + 0x0800 + 1 );
+        FUNCTION_0115( 1, 0 );
+        FUNCTION_0128( 1, 2 );
+        return;
+    }
+	else if ( BIT_CHK(7001) )
+	{
+		BIT_OFF(7001);
+		CALL_FIELD( 6, 3, 3, 0 ); // return to student with glasses
+		return;
+	}
+	else if ( BIT_CHK(7002) )
+	{
+		BIT_OFF(7002);
+		CALL_FIELD( 7, 2, 0, 0 ); // return to dorm entrance
+		return;
+	}
+	else if ( BIT_CHK(7003) )
+	{
+		BIT_OFF(7003);
+		CALL_FIELD( 4, 10, 8, 0 ); // return to dorm entrance (answer)
+		return;
+	}
+    else 
+    {
+        OPEN_MSG_WIN();
+        MSG( TEST_ERROR );
+        CLOSE_MSG_WIN();
+        CALL_FIELD( 8, 9, 1, 0 );
+        return;
+    }
+
+}

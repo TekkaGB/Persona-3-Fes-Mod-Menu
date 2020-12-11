@@ -1,0 +1,18 @@
+
+// 
+// FlowScript decompiled by AtlusScriptLib by TGE (2017)
+// In the unfortunate case of any bugs, please report them back to me.
+// 
+
+
+// 
+// Imports
+// 
+
+import( "BASE_f004.bf" );
+import ( "../ModMenu.flow" );
+
+void save_point_hook()
+{
+    ModMenuDisplay(3);
+}
