@@ -1,21 +1,32 @@
 [sel Mod_Menu]
+[f 0 8 -258][f 1 31]Call Menu[e]
+[f 0 8 -258][f 1 31]                    Flag Menu[e]
+[f 0 8 -258][f 1 31]Facilities[e]
+[f 0 8 -258][f 1 31]                    Set Yen[e]
+[f 0 8 -258][f 1 31]Fast Travel[e]
+[f 0 8 -258][f 1 31]                    Save[e]
+
+[sel Facilities_Menu]
+[f 0 8 -258][f 1 31]Velvet Room[e]
+[f 0 8 -258][f 1 31]Police Station[e]
+[f 0 8 -258][f 1 31]Aohige Pharmacy[e]
+[f 0 8 -258][f 1 31]Shinshoudo Antiques[e]
+[f 0 8 -258][f 1 31]Be Blue V[e]
+
+[sel Call_Menu]
 [f 0 8 -258][f 1 31]Call Event[e]
 [f 0 8 -258][f 1 31]                    Call Field[e]
 [f 0 8 -258][f 1 31]Call Battle[e]
 [f 0 8 -258][f 1 31]                    Call BGM[e]
 [f 0 8 -258][f 1 31]Call Movie[e]
 [f 0 8 -258][f 1 31]                    Call Floor[e]
-[f 0 8 -258][f 1 31]Change Flag[e]
-[f 0 8 -258][f 1 31]                    Facilities[e]
-[f 0 8 -258][f 1 31]Fast Travel[e]
-[f 0 8 -258][f 1 31]                    Save[e]
 
-[sel Facilities_Menu]
-[f 0 8 -258][f 1 31]Velvet Room[e]
-[f 0 8 -258][f 1 31]                     Police Station[e]
-[f 0 8 -258][f 1 31]Aohige Pharmacy[e]
-[f 0 8 -258][f 1 31]              Shinshoudo Antiques[e]
-[f 0 8 -258][f 1 31]Be Blue V[e]
+[sel Flag_Menu]
+[f 0 8 -258][f 1 31]Enable All Flags[e]
+[f 0 8 -258][f 1 31]Disable All Flags[e]
+[f 0 8 -258][f 1 31]Print Enabled Flags[e]
+[f 0 8 -258][f 1 31]Manual Input[e]
+[f 0 8 -258][f 1 31]Select Range[e]
 
 [sel Num_Menu]
 [f 0 5 -258][f 1 31] 0[e]
@@ -29,14 +40,26 @@
 [f 0 5 -258][f 1 31]                                 8[e]
 [f 0 5 -258][f 1 31]                                     9[e]
 
-[msg Welcome]
+[msg Mod]
 [f 0 8 -258][f 1 31]Mod Menu[n][f 0 4][e]
+
+[msg Call]
+[f 0 8 -258][f 1 31]Call Menu[n][f 0 4][e]
+
+[msg Flag]
+[f 0 8 -258][f 1 31]Flag Menu[n][f 0 4][e]
+
+[msg Facilities]
+[f 0 8 -258][f 1 31]Facilities[n][f 0 4][e]
 
 [msg SelectMajor]
 [f 0 8 -258][f 1 31]Major I.D. (3 digits)[n][f 0 4][e]
 
 [msg SelectMinor]
 [f 0 8 -258][f 1 31]Minor I.D. (3 digits)[n][f 0 4][e]
+
+[msg SelectYen]
+[f 0 8 -258][f 1 31]Yen (7 digits)[n][f 0 4][e]
 
 [msg SelectID2]
 [f 0 8 -258][f 1 31]I.D. (2 digits)[n][f 0 4][e]
@@ -46,6 +69,12 @@
 
 [msg SelectFlag]
 [f 0 8 -258][f 1 31]Flag (4 digits)[n][f 0 4][e]
+
+[msg SelectLowerFlag]
+[f 0 8 -258][f 1 31]Lower Index of Flags (4 digits)[n][f 0 4][e]
+
+[msg SelectUpperFlag]
+[f 0 8 -258][f 1 31]Upper Index of Flags (4 digits)[n][f 0 4][e]
 
 [msg SelectPosition]
 [f 0 8 -258][f 1 31]Entry point I.D. (2 digits)[n][f 0 4][e]

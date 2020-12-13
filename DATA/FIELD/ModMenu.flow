@@ -8,47 +8,304 @@ void ModMenuDisplay(int location)
 {
 	gLocation = location;
 	OPEN_MSG_WIN();
-	MSG( Welcome );
-	SET_SEL_CHOICE_KEYBIND(6,20);
-	int select = SEL( Mod_Menu );
 	
-	switch (select)
+	while (true)
 	{
-		case 0:
-			EventSelect();
-			break;
-		case 1:
-			FieldSelect();
-			break;
-		case 2:
-			BattleSelect();
-			break;
-		case 3:			
-			BGMSelect();
-			break;
-		case 4:
-			MovieSelect();
-			break;
-		case 5:
-			DungeonSelect();
-			break;
-		case 6:
-			ToggleBit();
-			break;
-		case 7:
-			Facilities_Menu_Display();
-			break;
-		case 8:
-			CLOSE_MSG_WIN();
-			FastTravel();
-			break;
-		case 9:
-			Save();
-			break;
-		case 20:
-			break;
+		MSG( Mod );
+		SET_SEL_CHOICE_KEYBIND(6,20);
+		SET_SEL_CHOICE_KEYBIND(7,20);
+		int select = SEL( Mod_Menu );
+		switch (select)
+		{
+			case 0:
+				if (Call_Menu_Display())
+					return;
+				else
+					break;
+			case 1:
+				if (Flag_Menu_Display())
+					return;
+				else
+					break;
+			case 2:
+				if (Facilities_Menu_Display())
+					return;
+				else
+					break;
+			case 3:
+				SetYen();
+				break;
+			case 4:
+				FastTravel();
+				return;
+			case 5:
+				Save();
+				return;
+			case 20:
+				return;
+		}
+	}
+}
+
+void SetYen()
+{
+	int yen = Get_Number(7, SelectYen);
+	if (yen == -1)
+	{
+		return;
+	}
+	int current = GET_YEN();
+	if (yen < current)
+		REMOVE_YEN(current-yen);
+	else if (yen > current)
+		GIVE_YEN(yen-current);
+}
+
+int Call_Menu_Display()
+{
+	while (true)
+	{
+		MSG( Call );
+		SET_SEL_CHOICE_KEYBIND(6,20);
+		SET_SEL_CHOICE_KEYBIND(7,19);
+		int select = SEL( Call_Menu );
+		
+		switch (select)
+		{
+			case 0:
+				if (EventSelect())
+					return 1;
+				else
+					break;
+			case 1:
+				if (FieldSelect())
+					return 1;
+				else
+					break;
+			case 2:
+				if (BattleSelect())
+					return 1;
+				else
+					break;
+			case 3:			
+				BGMSelect();
+				break;
+			case 4:
+				if (MovieSelect())
+					return 1;
+				else
+					break;
+			case 5:
+				if (DungeonSelect())
+					return 1;
+				else
+					break;
+			case 19:
+				CLOSE_MSG_WIN();
+				return 1;
+			case 20:
+				return 0;
+		}
+	}
+	return 0;
+}
+
+// Call functions
+int BattleSelect()
+{
+	int floor = GET_FLOOR_ID();
+	int major = Get_Number(3, SelectID3);
+	if (major == -1)
+	{
+		return 0;
 	}
 	CLOSE_MSG_WIN();
+	CALL_SFX( 3, 0 );
+	FUNCTION_01C2();
+	FUNCTION_01C3();
+	CALL_BATTLE( major );
+	FADE( 3, 0 );
+	FADE_SYNC();
+	FUNCTION_00A6();
+	FUNCTION_01E7();
+	FUNCTION_01A5();
+	if (floor != 0) // return to current tartarus floor
+		CALL_FLOOR( floor );
+	else if (gLocation == 1)
+		CALL_FIELD( 6, 3, 3, 0 ); // return to student with glasses
+	else if (gLocation == 2)
+		CALL_FIELD( 7, 2, 0, 0 ); // return to dorm entrance
+	else if (gLocation == 3)
+		CALL_FIELD( 4, 10, 8, 0 ); // return to dorm entrance (answer)
+	return 1;
+}
+
+// Call floor
+int DungeonSelect()
+{
+	int major = Get_Number(3, SelectFloor);
+	if (major == -1)
+	{
+		return 0;
+	}
+	CLOSE_MSG_WIN();
+	FADE( 3, 0 );
+	FADE_SYNC();
+	CALL_FLOOR( major );
+	return 1;
+}
+
+int MovieSelect()
+{
+	int floor = GET_FLOOR_ID();
+	int major = Get_Number(2, SelectID2);
+	if (major == -1)
+	{
+		return 0;
+	}
+	CLOSE_MSG_WIN();
+	// silence
+	CALL_BGM(999);
+	CALL_MOVIE(major);
+	NS_MOVIE_SYNC();
+	FADE( 3, 0 );
+	FADE_SYNC();
+	if (floor != 0)
+		CALL_FLOOR( floor );
+	else if (gLocation == 1)
+		CALL_FIELD( 6, 3, 3, 0 );
+	else if (gLocation == 2)
+		CALL_FIELD( 7, 2, 0, 0 );
+	else if (gLocation == 3)
+		CALL_FIELD( 4, 10, 8, 0 ); // return to dorm entrance (answer)
+	return 1;
+}
+
+int EventSelect()
+{
+	int floor = GET_FLOOR_ID();
+	int major = Get_Number(3, SelectMajor);
+	if (major == -1)
+	{
+		return 0;
+	}
+	int minor = Get_Number(3, SelectMinor);
+	if (minor == -1)
+	{
+		return 0;
+	}
+	CLOSE_MSG_WIN();
+	FADE( 3, 0 );
+	FADE_SYNC();
+	BIT_ON( 0 + 0x0400 + 0x0800 + 0x0400 + 0x0400 + 7 );
+	CALL_EVENT( major, minor, 0);
+	FADE( 3, 0 );
+	FADE_SYNC();
+	if (floor != 0)
+		CALL_FLOOR( floor );
+	else if (gLocation == 1)
+		CALL_FIELD( 6, 3, 3, 0 );
+	else if (gLocation == 2)
+		CALL_FIELD( 7, 2, 0, 0 );
+	else if (gLocation == 3)
+		CALL_FIELD( 4, 10, 8, 0 ); // return to dorm entrance (answer)
+	return 1;
+}
+
+int FieldSelect()
+{
+	int major = Get_Number(3, SelectMajor);
+	if (major == -1)
+	{
+		return 0;
+	}
+	int minor = Get_Number(3, SelectMinor);
+	if (minor == -1)
+	{
+		return 0;
+	}
+	int pos = Get_Number(2, SelectPosition);
+	FADE( 3, 0 );
+	FADE_SYNC();
+	BIT_ON( 0 + 0x0400 + 0x0800 + 0x0400 + 0x0400 + 7 );
+	CALL_FIELD( major, minor, pos, 0 );
+	return 1;
+}
+
+void BGMSelect()
+{
+	int major = Get_Number(3, SelectID3);
+	if (major == -1)
+		return;
+	CALL_BGM(major);
+}
+
+int Flag_Menu_Display()
+{
+	while (true)
+	{
+		MSG( Flag );
+		SET_SEL_CHOICE_KEYBIND(6,20);
+		SET_SEL_CHOICE_KEYBIND(7,19);
+		int select = SEL( Flag_Menu );
+		
+		switch (select)
+		{
+			case 0:
+				EnableAllFlags();
+				break;
+			case 1:
+				DisableAllFlags();
+				break;
+			case 2:
+				PrintFlags();
+				break;
+			case 3:			
+				ToggleBit();
+				break;
+			case 4:
+				ToggleRange();
+				break;
+			case 19:
+				CLOSE_MSG_WIN();
+				return 1;
+			case 20:
+				return 0;
+		}
+	}
+	return 0;
+}
+
+void PrintFlags()
+{
+	PUTSTR("=======Enabled Flags=======");
+	int index = 0;
+	while (index < 10000)
+	{
+		if (BIT_CHK(index))
+			PUT(index);
+		index = index + 1;
+	}
+}
+
+void EnableAllFlags()
+{
+	int index = 0;
+	while (index < 10000)
+	{
+		BIT_ON(index);
+		index = index + 1;
+	}
+}
+
+void DisableAllFlags()
+{
+	int index = 0;
+	while (index < 10000)
+	{
+		BIT_OFF(index);
+		index = index + 1;
+	}
 }
 
 void ToggleBit()
@@ -56,7 +313,6 @@ void ToggleBit()
 	int major = Get_Number(4, SelectFlag);
 	if (major == -1)
 	{
-		CLOSE_MSG_WIN();
 		return;
 	}
 	int flag = BIT_CHK(major);
@@ -81,40 +337,73 @@ void ToggleBit()
 	}
 	else
 	{
-		CLOSE_MSG_WIN();
 		return;
 	}
 	SET_MSG_VAR(0, major, 0);
 	SET_MSG_VAR(1, BIT_CHK(major), 0);
     MSG( FlagConfirmation );
-	CLOSE_MSG_WIN();
 }
 
-void Facilities_Menu_Display()
+void ToggleRange()
 {
+	int lower = Get_Number(4, SelectLowerFlag);
+	if (lower == -1)
+	{
+		return;
+	}
+	int upper = Get_Number(4, SelectUpperFlag);
+	if (lower == -1)
+	{
+		return;
+	}
+	SET_SEL_CHOICE_KEYBIND(6,3);
+	int toggle = SEL(OnOff);
+	if (toggle < 2 )
+	{
+		while (lower <= upper)
+		{
+			if (toggle == 0)
+				BIT_ON(lower);
+			else
+				BIT_OFF(lower);
+			lower = lower + 1;
+		}
+	}
+	return;
+}
+
+int Facilities_Menu_Display()
+{
+	MSG( Facilities );
 	SET_SEL_CHOICE_KEYBIND(6,20);
+	SET_SEL_CHOICE_KEYBIND(7,19);
 	int select = SEL( Facilities_Menu );
-	CLOSE_MSG_WIN();
+	if (select < 5)
+		CLOSE_MSG_WIN();
 	switch (select)
 	{
 		case 0:
 			VelvetRoom();
-			break;
+			return 1;
 		case 1:
 			Police();
-			break;
+			return 1;
 		case 2:
 			Pharmacy();
-			break;
+			return 1;
 		case 3:
 			Antique();
-			break;
+			return 1;
 		case 4:
 			Accessory();
-			break;
+			return 1;
+		case 19:
+			CLOSE_MSG_WIN();
+			return 1;
 		case 20:
-			break;
+			return 0;
 	}
+	return 0;
 }
 
 // Facility functions
@@ -152,8 +441,6 @@ void Police()
     FUNCTION_002A( 0 );
     FUNCTION_002B();
     BIT_OFF( 0 + 0x0400 + 0x0800 + 0x0400 + 0x0400 + 7 );
-    CALL_FIELD( 8, 1, 6, 0 );
-	
 	if (floor != 0) // return to current tartarus floor
 		CALL_FLOOR( floor );
 	else if (gLocation == 1)
@@ -213,7 +500,11 @@ void VelvetRoom()
 	else if (gLocation == 2)
 		BIT_ON(7002);
 	else if (gLocation == 3)
+	{
 		BIT_ON(7003);
+		BIT_ON(4612);
+		BIT_ON(4614);
+	}
 	else
 		BIT_ON( 0 + 0x0400 + 0x0800 + 1 ); // return to tartarus entrance until I find get/set count functions
 	CALL_SFX( 2, 0x20 );
@@ -226,6 +517,7 @@ void VelvetRoom()
 // Brings up fast travel map
 void FastTravel()
 {
+	CLOSE_MSG_WIN();
 	BIT_ON( 0 + 0x0400 + 0x0800 + 19 );
 	FADE( 1, 0 );
 	FADE_SYNC();
@@ -236,143 +528,13 @@ void FastTravel()
 // Seems to not save exact floor in tartarus but the first floor of the block
 void Save()
 {
+	CLOSE_MSG_WIN();
 	FADE( 5, 10 );
 	FADE_SYNC();
 	FUNCTION_018F();
 	FUNCTION_0190();
 	FUNCTION_000D( 0 );
 	FADE_SYNC();
-}
-
-// Call functions
-void BattleSelect()
-{
-	int floor = GET_FLOOR_ID();
-	int major = Get_Number(3, SelectID3);
-	if (major == -1)
-	{
-		CLOSE_MSG_WIN();
-		return;
-	}
-	CLOSE_MSG_WIN();
-	CALL_SFX( 3, 0 );
-	FUNCTION_01C2();
-	FUNCTION_01C3();
-	CALL_BATTLE( major );
-	FADE( 3, 0 );
-	FADE_SYNC();
-	FUNCTION_00A6();
-	FUNCTION_01E7();
-	FUNCTION_01A5();
-	if (floor != 0) // return to current tartarus floor
-		CALL_FLOOR( floor );
-	else if (gLocation == 1)
-		CALL_FIELD( 6, 3, 3, 0 ); // return to student with glasses
-	else if (gLocation == 2)
-		CALL_FIELD( 7, 2, 0, 0 ); // return to dorm entrance
-	else if (gLocation == 3)
-		CALL_FIELD( 4, 10, 8, 0 ); // return to dorm entrance (answer)
-}
-
-// Call floor
-void DungeonSelect()
-{
-	int major = Get_Number(3, SelectFloor);
-	if (major == -1)
-	{
-		CLOSE_MSG_WIN();
-		return;
-	}
-	CLOSE_MSG_WIN();
-	FADE( 3, 0 );
-	FADE_SYNC();
-	CALL_FLOOR( major );
-}
-
-void MovieSelect()
-{
-	int floor = GET_FLOOR_ID();
-	int major = Get_Number(2, SelectID2);
-	if (major == -1)
-	{
-		CLOSE_MSG_WIN();
-		return;
-	}
-	CLOSE_MSG_WIN();
-	// silence
-	CALL_BGM(999);
-	CALL_MOVIE(major);
-	NS_MOVIE_SYNC();
-	FADE( 3, 0 );
-	FADE_SYNC();
-	if (floor != 0)
-		CALL_FLOOR( floor );
-	else if (gLocation == 1)
-		CALL_FIELD( 6, 3, 3, 0 );
-	else if (gLocation == 2)
-		CALL_FIELD( 7, 2, 0, 0 );
-	else if (gLocation == 3)
-		CALL_FIELD( 4, 10, 8, 0 ); // return to dorm entrance (answer)
-}
-
-void EventSelect()
-{
-	int floor = GET_FLOOR_ID();
-	int major = Get_Number(3, SelectMajor);
-	if (major == -1)
-	{
-		CLOSE_MSG_WIN();
-		return;
-	}
-	int minor = Get_Number(3, SelectMinor);
-	if (minor == -1)
-	{
-		CLOSE_MSG_WIN();
-		return;
-	}
-	CLOSE_MSG_WIN();
-	FADE( 3, 0 );
-	FADE_SYNC();
-	BIT_ON( 0 + 0x0400 + 0x0800 + 0x0400 + 0x0400 + 7 );
-	CALL_EVENT( major, minor, 0);
-	FADE( 3, 0 );
-	FADE_SYNC();
-	if (floor != 0)
-		CALL_FLOOR( floor );
-	else if (gLocation == 1)
-		CALL_FIELD( 6, 3, 3, 0 );
-	else if (gLocation == 2)
-		CALL_FIELD( 7, 2, 0, 0 );
-	else if (gLocation == 3)
-		CALL_FIELD( 4, 10, 8, 0 ); // return to dorm entrance (answer)
-}
-
-void FieldSelect()
-{
-	int major = Get_Number(3, SelectMajor);
-	if (major == -1)
-	{
-		CLOSE_MSG_WIN();
-		return;
-	}
-	int minor = Get_Number(3, SelectMinor);
-	if (minor == -1)
-	{
-		CLOSE_MSG_WIN();
-		return;
-	}
-	int pos = Get_Number(2, SelectPosition);
-	FADE( 3, 0 );
-	FADE_SYNC();
-	BIT_ON( 0 + 0x0400 + 0x0800 + 0x0400 + 0x0400 + 7 );
-	CALL_FIELD( major, minor, pos, 0 );
-}
-
-void BGMSelect()
-{
-	int major = Get_Number(3, SelectID3);
-	CLOSE_MSG_WIN();
-	CALL_BGM(major);
 }
 
 // Used for getting id's for calling functions

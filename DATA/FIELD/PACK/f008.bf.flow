@@ -44,6 +44,8 @@ void out_velvet_room_hook()
 	else if ( BIT_CHK(7003) )
 	{
 		BIT_OFF(7003);
+		BIT_OFF(4612);
+		BIT_OFF(4614);
 		CALL_FIELD( 4, 10, 8, 0 ); // return to dorm entrance (answer)
 		return;
 	}
@@ -57,3 +59,4 @@ void out_velvet_room_hook()
     }
 
 }
+
