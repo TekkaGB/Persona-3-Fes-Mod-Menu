@@ -1,7 +1,7 @@
 # Persona 3 FES Mod Menu
 **Custom scripts for Persona 3 FES that replace the square button function in Tartarus, save points, and student with glasses with a fully featured trainer**
 
-![No Pages Mod Menu](https://i.imgur.com/a2wzDYM.png)
+![Mod Menu](https://screenshots.gamebanana.com/img/ss/gamefiles/5fd6271eae672.jpg)
 ## How to access in game
 Mod menus for other Persona games were only called by the square button function.  However, I had to improvise since the square button function only worked inside Tartarus.  Other methods of accessing the menu includes:
 - Talking to the Student with Glasses in Classroom 2-F who normally let's you just Fast Travel around town.
@@ -9,10 +9,12 @@ Mod menus for other Persona games were only called by the square button function
 
 ## Features
 - Choose a Field, Event, BGM Track, Cutscene, Floor, or Facility to load.
-- Toggle flags
+- Toggle and print flags
+- Set Yen
 - Save wherever you can access the Mod Menu.
 - Access the Fast Travel map.
 - More soon to come...
+Note: Printed flags are shown on TTY console
 
 ## Issues
 - Going to the Velvet Room in Tartarus/Abyssal of Time will bring you back to the entrance when leaving until I find the functions I need.
