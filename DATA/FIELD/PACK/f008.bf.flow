@@ -25,10 +25,16 @@ void out_velvet_room_hook()
     else if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 1 ) == 1 )
     {
         BIT_OFF( 0 + 0x0400 + 0x0800 + 1 );
-        FUNCTION_0115( 1, 0 );
+        SET_CNT( 1, 0 );
         FUNCTION_0128( 1, 2 );
         return;
     }
+	else if ( BIT_CHK(7000) )
+	{
+		BIT_OFF(7000);
+		CALL_FLOOR( GET_CNT(999) ); // return to current floor
+		return;
+	}
 	else if ( BIT_CHK(7001) )
 	{
 		BIT_OFF(7001);
@@ -46,6 +52,7 @@ void out_velvet_room_hook()
 		BIT_OFF(7003);
 		BIT_OFF(4612);
 		BIT_OFF(4614);
+		BIT_OFF(4617);
 		CALL_FIELD( 4, 10, 8, 0 ); // return to dorm entrance (answer)
 		return;
 	}

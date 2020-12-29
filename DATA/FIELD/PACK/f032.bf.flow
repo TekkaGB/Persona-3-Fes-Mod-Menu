@@ -22,7 +22,7 @@ import ( "../ModMenu.flow" );
 
 void save_point_hook()
 {
-    ModMenuDisplay(0);
+	ModMenuDisplay(0);
 }
 
 

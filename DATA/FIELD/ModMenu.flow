@@ -33,8 +33,10 @@ void ModMenuDisplay(int location)
 				else
 					break;
 			case 3:
-				SetYen();
-				break;
+				if (Misc_Menu_Display())
+					return;
+				else
+					break;
 			case 4:
 				FastTravel();
 				return;
@@ -45,6 +47,125 @@ void ModMenuDisplay(int location)
 				return;
 		}
 	}
+}
+
+int Misc_Menu_Display()
+{
+	while (true)
+	{
+		MSG( Misc );
+		SET_SEL_CHOICE_KEYBIND(6,20);
+		SET_SEL_CHOICE_KEYBIND(7,19);
+		int select = SEL( Misc_Menu );
+		
+		switch (select)
+		{
+			case 0:
+				SetYen();
+				break;
+			case 1:
+				SetItem();
+				break;
+			case 2:
+				MaxSocialStats();
+				break;
+			case 3:
+				MaxPersonaStats();
+				break;
+			case 4:
+				if (ChangeDate())
+					return 1;
+				else
+					break;
+			case 5:
+				Add_Member();
+				break;
+			case 6:
+				Remove_Member();
+				break;
+			case 19:
+				CLOSE_MSG_WIN();
+				return 1;
+			case 20:
+				return 0;
+		}
+	}
+	return 0;
+}
+
+void SetItem()
+{
+	MSG( Select_Item_Group );
+	SET_SEL_CHOICE_KEYBIND(6,20);
+	int select = SEL( Item_Group );
+	if (select == 20)
+		return;
+	int group = select * 1000;
+	int id = Get_Number(3, Select_Weapon + select);
+	if (id == -1)
+		return;
+	SET_MSG_VAR( 0, group + id, 3 )
+	SET_MSG_VAR( 1, GET_ITEM(1, group + id), 0);
+	MSG(Confirm_Item);
+	SET_SEL_CHOICE_KEYBIND( 6, 1 );
+	select = SEL( YesNo );
+	if (select == 1)
+		return;
+	int amount = Get_Number( 2, SetAmount );
+	if (amount == -1)
+		return;
+	SET_ITEM(1, group + id, amount)
+}
+
+void MaxSocialStats()
+{
+	CHANGE_SOCIAL_STAT( 0, 999 );
+	CHANGE_SOCIAL_STAT( 1, 999 );
+	CHANGE_SOCIAL_STAT( 2, 999 );
+}
+
+void MaxPersonaStats()
+{
+	CHANGE_PERSONA_STAT( 0, 99 );
+	CHANGE_PERSONA_STAT( 1, 99 );
+	CHANGE_PERSONA_STAT( 2, 99 );
+	CHANGE_PERSONA_STAT( 3, 99 );
+	CHANGE_PERSONA_STAT( 4, 99 );
+}
+
+void Add_Member()
+{
+	int member = Get_Number(2, SelectID2);
+	if (member == -1)
+		return;
+	ADD_MEMBER( 0, member ); //Adds member
+}
+
+void Remove_Member()
+{
+	int member = Get_Number(2, SelectID2);
+	if (member == -1)
+		return;
+	REMOVE_MEMBER(member); //Removes member
+}
+
+int ChangeDate()
+{
+	int month = Get_Number(2, Month);
+	if (month == -1)
+		return 0;
+	int day = Get_Number(2, Day);
+	if (day == -1)
+		return 0;
+	int time = Get_Number(1, Time);
+	if (time == -1)
+		return 0;
+	SET_DATE( month, day, time );
+	FUNCTION_0186( 15 );
+    FADE( 1, 0 );
+    FADE_SYNC();
+	NEXT_DAY();
+	return 1;
 }
 
 void SetYen()
@@ -415,7 +536,7 @@ void Accessory()
 	FADE( 2, 0 );
 	FADE_SYNC();
 	BIT_ON( 0 + 0x0400 + 0x0800 + 0x0400 + 0x0400 + 7 );
-	FUNCTION_002A( 1 );
+	CALL_FACILITY( 1 );
 	FUNCTION_002B();
 	BIT_OFF( 0 + 0x0400 + 0x0800 + 0x0400 + 0x0400 + 7 );
 	
@@ -438,7 +559,7 @@ void Police()
     FADE( 2, 0 );
     FADE_SYNC();
 	BIT_ON( 0 + 0x0400 + 0x0800 + 0x0400 + 0x0400 + 7 );
-    FUNCTION_002A( 0 );
+    CALL_FACILITY( 0 );
     FUNCTION_002B();
     BIT_OFF( 0 + 0x0400 + 0x0800 + 0x0400 + 0x0400 + 7 );
 	if (floor != 0) // return to current tartarus floor
@@ -459,7 +580,7 @@ void Antique()
     FADE( 2, 0 );
     FADE_SYNC();
     BIT_ON( 0 + 0x0400 + 0x0800 + 0x0400 + 0x0400 + 7 );
-    FUNCTION_002A( 4 );
+    CALL_FACILITY( 4 );
     FUNCTION_002B();
     BIT_OFF( 0 + 0x0400 + 0x0800 + 0x0400 + 0x0400 + 7 );
 	if (floor != 0) // return to current tartarus floor
@@ -480,7 +601,7 @@ void Pharmacy()
 	FADE( 2, 0 );
 	FADE_SYNC();
 	BIT_ON( 0 + 0x0400 + 0x0800 + 0x0400 + 0x0400 + 7 );
-	FUNCTION_002A( 2 );
+	CALL_FACILITY( 2 );
 	FUNCTION_002B();
 	BIT_OFF( 0 + 0x0400 + 0x0800 + 0x0400 + 0x0400 + 7 );
 	if (floor != 0) // return to current tartarus floor
@@ -505,8 +626,11 @@ void VelvetRoom()
 		BIT_ON(4612);
 		BIT_ON(4614);
 	}
-	else
-		BIT_ON( 0 + 0x0400 + 0x0800 + 1 ); // return to tartarus entrance until I find get/set count functions
+	else if (gLocation == 0)
+	{
+		BIT_ON(7000);
+		SET_CNT(999, GET_FLOOR_ID());
+	}
 	CALL_SFX( 2, 0x20 );
 	FLD_FUNCTION_0089( 10243, 1, 0, 0, 1 );
 	FADE( 6, 30 );
