@@ -1,0 +1,3935 @@
+
+// 
+// FlowScript decompiled by AtlusScriptLib by TGE (2017)
+// In the unfortunate case of any bugs, please report them back to me.
+// 
+
+
+// 
+// Imports
+// 
+
+import( "BASE_FIELD.BF.msg" );
+
+// 
+// Script-level variable definitions
+// 
+
+global( 61 ) int gVar61;
+global( 62 ) int gVar62;
+global( 63 ) int gVar63;
+global( 0x40 ) int gVar64;
+global( 65 ) int gVar65;
+global( 66 ) int gVar66;
+global( 67 ) int gVar67;
+global( 68 ) int gVar68;
+global( 69 ) int gVar69;
+global( 70 ) int gVar70;
+global( 74 ) int gVar74;
+global( 60 ) int gVar60;
+global( 96 ) int gVar96;
+global( 97 ) int gVar97;
+global( 71 ) int gVar71;
+global( 72 ) int gVar72;
+global( 73 ) int gVar73;
+global( 75 ) int gVar75;
+global( 76 ) int gVar76;
+global( 77 ) int gVar77;
+global( 79 ) int gVar79;
+global( 80 ) int gVar80;
+global( 37 ) int gVar37;
+global( 22 ) int gVar22;
+global( 21 ) int gVar21;
+global( 100 ) int gVar100;
+global( 23 ) int gVar23;
+global( 24 ) int gVar24;
+global( 25 ) int gVar25;
+global( 26 ) int gVar26;
+global( 27 ) int gVar27;
+global( 28 ) int gVar28;
+global( 29 ) int gVar29;
+global( 30 ) int gVar30;
+global( 36 ) int gVar36;
+global( 31 ) int gVar31;
+global( 0x20 ) int gVar32;
+global( 38 ) int gVar38;
+global( 33 ) int gVar33;
+global( 40 ) int gVar40;
+global( 42 ) int gVar42;
+global( 41 ) int gVar41;
+global( 78 ) int gVar78;
+global( 91 ) int gVar91;
+global( 81 ) int gVar81;
+
+// 
+// Procedure declarations
+// 
+
+void field_tbox_get()
+{
+    FUNCTION_01E4();
+    int var2 = FUNCTION_000A( 199 ) + 1;
+    int var3 = FUNCTION_000A( 2999 ) + 100;
+    int var4 = FUNCTION_000A( 599 ) + 100 / 100;
+    OPEN_MSG_WIN();
+    
+    if ( FUNCTION_0169() == 1 )
+    {
+        MSG( OPEN_RARE_TBOX );
+    }
+
+    int var0 = CMN_FUNCTION_0017( 11, 0 );
+    int var1 = 0;
+    
+    if ( FUNCTION_01A0() == 0 )
+    {
+        SET_MSG_VAR( 0, FUNCTION_0116(), 17 );
+        SET_MSG_VAR( 1, FUNCTION_00E5(), 17 );
+        SET_MSG_VAR( 2, FUNCTION_00E6(), 0 );
+        MSG( GET_ITEM_MES );
+    }
+    else if ( var2 <= 100 )
+    {
+        var1 = FUNCTION_01A0() - FUNCTION_01A0() * var3 / 10000;
+    }
+    else 
+    {
+        var1 = FUNCTION_01A0() + FUNCTION_01A0() * var3 / 10000;
+    }
+
+    
+    if ( var4 == 5 )
+    {
+        var1 = var1 / 10;
+    }
+    else if ( var4 == 6 )
+    {
+        var1 = var1 * 2;
+    }
+
+    GIVE_YEN( var1 );
+    SET_MSG_VAR( 2, var1, 0 );
+    MSG( GET_MONEY_MES );
+    CLOSE_MSG_WIN();
+    FLD_FUNCTION_00E8();
+    CAMP_FUNCTION_0144( 1 );
+    FUNCTION_0145();
+    FUNCTION_0019( var0 );
+}
+
+
+void died_in_tartaros()
+{
+    
+    if ( BIT_CHK( 0 + 490 ) )
+    {
+        CALL_EVENT( 80, 2, 0 );
+        CALL_EVENT( 80, 5, 0 );
+    }
+    else if ( BIT_CHK( 0 + 491 ) )
+    {
+        CALL_EVENT( 80, 3, 0 );
+        CALL_EVENT( 80, 5, 0 );
+    }
+    else if ( BIT_CHK( 0 + 492 ) )
+    {
+        CALL_EVENT( 80, 4, 0 );
+        CALL_EVENT( 80, 5, 0 );
+    }
+    else 
+    {
+        CALL_EVENT( 80, 1, 0 );
+    }
+
+    SOFT_RESET();
+}
+
+
+void field_order_party()
+{
+    FUNCTION_01E4();
+    
+    if ( FUNCTION_01E9() == 1 && BIT_CHK( 0 + 0x0400 + 0x0800 + 498 ) == 1 )
+    {
+        fes_order_party();
+        return;
+    }
+    else if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 507 ) == 1 )
+    {
+        tutorial_order_party();
+        return;
+    }
+    else if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 572 ) == 1 )
+    {
+        f031_operation();
+        return;
+    }
+    else if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 610 ) == 1 )
+    {
+        f052_operation();
+        return;
+    }
+    else if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 702 ) == 1 )
+    {
+        f034_operation();
+        return;
+    }
+    else if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 799 ) == 1 )
+    {
+        f035_operation();
+        return;
+    }
+    else if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 498 ) == 1 )
+    {
+        tartaros_order_party();
+        return;
+    }
+
+}
+
+
+void return_to_entrance()
+{
+    item_transfer_all();
+    BIT_OFF( 0 + 0x0400 + 0x0800 + 0x0400 + 0x0400 + 20 );
+    
+    if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 174 ) == 1 && BIT_CHK( 0 + 0x0400 + 0x0800 + 175 ) == 0 )
+    {
+        BIT_ON( 0 + 0x0400 + 0x0800 + 175 );
+    }
+
+    CALL_BTL_SFX( 3, 3 );
+    
+    if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 121 ) == 1 )
+    {
+        BIT_OFF( 0 + 0x0400 + 0x0800 + 121 );
+        FUNCTION_013C( 0 );
+        FADE( 6, 10 );
+        FADE_SYNC();
+        FUNCTION_0079( FUNCTION_0137( 0 ), 1 );
+        FUNCTION_0079( FUNCTION_0137( 1 ), 1 );
+        FUNCTION_0079( FUNCTION_0137( 2 ), 1 );
+        FUNCTION_0079( FUNCTION_0137( 3 ), 1 );
+    }
+    else 
+    {
+        FUNCTION_013C( 1 );
+    }
+
+    SET_CNT( 1, 0 );
+    
+    if ( FUNCTION_01E9() == 1 )
+    {
+        
+        if ( GET_FLOOR_ID() >= 2 && GET_FLOOR_ID() <= 20 )
+        {
+            FUNCTION_0128( 1, 1 );
+            return;
+        }
+        else if ( GET_FLOOR_ID() >= 21 && GET_FLOOR_ID() <= 40 )
+        {
+            FUNCTION_0128( 1, 3 );
+            return;
+        }
+        else if ( GET_FLOOR_ID() >= 41 && GET_FLOOR_ID() <= 70 )
+        {
+            FUNCTION_0128( 1, 5 );
+            return;
+        }
+        else if ( GET_FLOOR_ID() >= 71 && GET_FLOOR_ID() <= 100 )
+        {
+            FUNCTION_0128( 1, 8 );
+            return;
+        }
+        else if ( GET_FLOOR_ID() >= 101 && GET_FLOOR_ID() <= 130 )
+        {
+            FUNCTION_0128( 1, 11 );
+            return;
+        }
+        else if ( GET_FLOOR_ID() >= 131 && GET_FLOOR_ID() <= 160 )
+        {
+            FUNCTION_0128( 1, 14 );
+            return;
+        }
+        else if ( GET_FLOOR_ID() >= 161 && GET_FLOOR_ID() <= 190 )
+        {
+            FUNCTION_0128( 1, 17 );
+            return;
+        }
+
+    }
+    else 
+    {
+        FUNCTION_0128( 1, 3 );
+        return;
+    }
+
+}
+
+
+void tutorial_order_party()
+{
+    int var6 = 0;
+    
+    if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 506 ) == 1 )
+    {
+        EVT_CUTIN_FUNCTION_00B6( 0, 0, 0, 4, 4, 2, 0 );
+        OPEN_MSG_WIN();
+        MSG( MITSURU_ADVICE );
+        CLOSE_MSG_WIN();
+        FUNCTION_00B7( 0 );
+        return;
+    }
+
+    var6 = var6 + 0x80;
+    var6 = var6 + 4;
+    var6 = var6 + 0x10;
+    var6 = var6 + 0x20;
+    
+    if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 499 ) == 0 )
+    {
+        var6 = var6 + 1;
+    }
+
+    
+    if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 499 ) == 1 )
+    {
+        var6 = var6 + 2;
+    }
+
+    OPEN_MSG_WIN();
+    MSG( ORDER_OK );
+    SET_SEL_CHOICE_KEYBIND( 6, 6 );
+    SET_MASK( var6 );
+    int var5 = SEL( ORDER_SEL );
+    CLOSE_MSG_WIN();
+    
+    if ( var5 == 0 )
+    {
+        BIT_OFF( 0 + 0x0400 + 0x0800 + 499 );
+        FUNCTION_011F( 0 );
+        FUNCTION_011C( 4, 21 );
+    }
+    else if ( var5 == 1 )
+    {
+        
+        if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 49 ) == 0 )
+        {
+            BIT_ON( 0 + 0x0400 + 0x0800 + 49 );
+            BIT_OFF( 0 + 0x0400 + 0x0800 + 510 );
+            HELP_MSG( 9 );
+        }
+
+        BIT_ON( 0 + 0x0400 + 0x0800 + 499 );
+        FUNCTION_011F( 1 );
+        FUNCTION_011C( 4, 22 );
+    }
+    else if ( var5 == 3 )
+    {
+        EVT_CUTIN_FUNCTION_00B6( 0, 0, 0, 4, 4, 2, 0 );
+        OPEN_MSG_WIN();
+        MSG( MITSURU_STOP_GO_BATTLE );
+        
+        if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 49 ) == 0 )
+        {
+            MSG( MITSURU_STOP_GO_BATTLE_2 );
+        }
+
+        CLOSE_MSG_WIN();
+        FUNCTION_00B7( 0 );
+    }
+    else if ( var5 == 6 && BIT_CHK( 0 + 0x0400 + 0x0800 + 49 ) == 0 )
+    {
+        EVT_CUTIN_FUNCTION_00B6( 0, 0, 0, 4, 4, 2, 0 );
+        OPEN_MSG_WIN();
+        MSG( MITSURU_NO_ORDER );
+        CLOSE_MSG_WIN();
+        FUNCTION_00B7( 0 );
+    }
+
+}
+
+
+void tartaros_order_party()
+{
+    int var7 = 0;
+    
+    if ( FUNCTION_018B( 6, 339 ) == 1 )
+    {
+        var7 = 1;
+    }
+
+    gVar61 = 41;
+    gVar62 = 42;
+    gVar63 = 43;
+    gVar64 = 44;
+    gVar65 = 45;
+    gVar66 = 46;
+    gVar67 = 47;
+    gVar68 = 49;
+    gVar69 = 51;
+    gVar70 = 50;
+    gVar74 = 0x10;
+    
+    if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 51 ) == 1 )
+    {
+        gVar60 = 6;
+        gVar96 = 6;
+        gVar97 = 4;
+        gVar71 = 35;
+        gVar72 = 36;
+        gVar73 = 25;
+        gVar75 = 37;
+        gVar76 = 38;
+        gVar77 = 39;
+        gVar79 = 40;
+        gVar80 = 34;
+    }
+    else 
+    {
+        gVar60 = 4;
+        gVar96 = 4;
+        gVar97 = 4;
+        gVar71 = 19;
+        gVar72 = 20;
+        gVar73 = 17;
+        gVar75 = 21;
+        gVar76 = 22;
+        gVar77 = 23;
+        gVar79 = 24;
+        gVar80 = 18;
+    }
+
+    int var9 = 0;
+    gVar37 = GET_FLOOR_ID();
+    check_party_member();
+    
+    if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 499 ) == 1 )
+    {
+        var9 = var9 + 2;
+    }
+
+    
+    if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 499 ) == 0 )
+    {
+        var9 = var9 + 1;
+    }
+
+    
+    if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 500 ) == 0 )
+    {
+        var9 = var9 + 4;
+    }
+
+    
+    if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 500 ) == 1 )
+    {
+        var9 = var9 + 8;
+    }
+
+    
+    if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 51 ) == 1 )
+    {
+        
+        if ( var7 == 0 )
+        {
+            var9 = var9 + 0x20;
+        }
+        else 
+        {
+            var9 = var9 + 0x10;
+        }
+
+    }
+    else 
+    {
+        var9 = var9 + 48;
+    }
+
+    
+    if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 993 ) == 0 )
+    {
+        var9 = var9 + 0x80;
+    }
+
+    
+    if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 495 ) == 1 )
+    {
+        order_stop();
+        return;
+    }
+    else if ( gVar21 == gVar22 )
+    {
+        
+        if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 993 ) == 0 )
+        {
+            var9 = var9 + 0x80;
+        }
+
+        EVT_CUTIN_FUNCTION_00B6( 0, 0, 0, gVar96, gVar97, 2, 2 );
+        OPEN_MSG_WIN();
+        MSG( gVar73 );
+        
+        if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 51 ) == 0 )
+        {
+            CLOSE_MSG_WIN();
+            FUNCTION_00B7( 0 );
+            
+            if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 993 ) == 1 )
+            {
+                debug_mode();
+            }
+
+        }
+        else 
+        {
+            order_for_huka();
+        }
+
+        return;
+    }
+    else 
+    {
+        OPEN_MSG_WIN();
+        MSG( gVar74 );
+    }
+
+    SET_SEL_CHOICE_KEYBIND( 6, 6 );
+    SET_MASK( var9 );
+    int var8 = SEL( ORDER_SEL );
+    CLOSE_MSG_WIN();
+    
+    if ( var8 == 0 )
+    {
+        BIT_OFF( 0 + 0x0400 + 0x0800 + 499 );
+        FUNCTION_011F( 0 );
+        FUNCTION_011C( gVar60, gVar75 );
+    }
+    else if ( var8 == 1 )
+    {
+        BIT_ON( 0 + 0x0400 + 0x0800 + 499 );
+        FUNCTION_011F( 1 );
+        FUNCTION_011C( gVar60, gVar76 );
+    }
+    else if ( var8 == 2 )
+    {
+        BIT_OFF( 0 + 0x0400 + 0x0800 + 500 );
+        FUNCTION_0120( 1 );
+        FUNCTION_011C( gVar60, gVar77 );
+    }
+    else if ( var8 == 3 )
+    {
+        
+        if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 50 ) == 0 )
+        {
+            FUNCTION_00B7( 0 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 50 );
+            HELP_MSG( 10 );
+        }
+
+        BIT_ON( 0 + 0x0400 + 0x0800 + 500 );
+        FUNCTION_0120( 0 );
+        FUNCTION_011C( gVar60, gVar79 );
+    }
+    else if ( var8 == 4 )
+    {
+        FUNCTION_00B7( 0 );
+        EVT_CUTIN_FUNCTION_00B6( 0, 0, 0, gVar96, gVar97, 2, 0 );
+        OPEN_MSG_WIN();
+        order_to_change_bgm();
+        return;
+    }
+    else if ( var8 == 5 )
+    {
+        FUNCTION_00B7( 0 );
+        EVT_CUTIN_FUNCTION_00B6( 0, 0, 0, gVar96, gVar97, 2, 0 );
+        OPEN_MSG_WIN();
+        MSG( HUKA_ORDER );
+        order_for_huka();
+        return;
+    }
+    else if ( var8 == 6 )
+    {
+        FUNCTION_00B7( 0 );
+    }
+    else if ( var8 == 7 )
+    {
+        debug_mode();
+        return;
+    }
+
+}
+
+
+void order_stop()
+{
+    int var10 = 0;
+    
+    if ( gVar37 == 5 && BIT_CHK( 0 + 0x0400 + 0x0800 + 490 ) == 1 )
+    {
+        var10 = 1;
+    }
+    else if ( gVar37 == 10 && BIT_CHK( 0 + 0x0400 + 0x0800 + 464 ) == 1 )
+    {
+        var10 = 1;
+    }
+    else if ( gVar37 == 14 && BIT_CHK( 0 + 0x0400 + 0x0800 + 465 ) == 1 )
+    {
+        var10 = 1;
+    }
+    else if ( gVar37 == 25 && BIT_CHK( 0 + 0x0400 + 0x0800 + 466 ) == 1 )
+    {
+        var10 = 1;
+    }
+    else if ( gVar37 == 36 && BIT_CHK( 0 + 0x0400 + 0x0800 + 467 ) == 1 )
+    {
+        var10 = 1;
+    }
+    else if ( gVar37 == 47 && BIT_CHK( 0 + 0x0400 + 0x0800 + 468 ) == 1 )
+    {
+        var10 = 1;
+    }
+    else if ( gVar37 == 59 && BIT_CHK( 0 + 0x0400 + 0x0800 + 469 ) == 1 )
+    {
+        var10 = 1;
+    }
+    else if ( gVar37 == 72 && BIT_CHK( 0 + 0x0400 + 0x0800 + 470 ) == 1 )
+    {
+        var10 = 1;
+    }
+    else if ( gVar37 == 85 && BIT_CHK( 0 + 0x0400 + 0x0800 + 471 ) == 1 )
+    {
+        var10 = 1;
+    }
+    else if ( gVar37 == 98 && BIT_CHK( 0 + 0x0400 + 0x0800 + 472 ) == 1 )
+    {
+        var10 = 1;
+    }
+    else if ( gVar37 == 110 && BIT_CHK( 0 + 0x0400 + 0x0800 + 473 ) == 1 )
+    {
+        var10 = 1;
+    }
+    else if ( gVar37 == 122 && BIT_CHK( 0 + 0x0400 + 0x0800 + 474 ) == 1 )
+    {
+        var10 = 1;
+    }
+    else if ( gVar37 == 135 && BIT_CHK( 0 + 0x0400 + 0x0800 + 475 ) == 1 )
+    {
+        var10 = 1;
+    }
+    else if ( gVar37 == 146 && BIT_CHK( 0 + 0x0400 + 0x0800 + 476 ) == 1 )
+    {
+        var10 = 1;
+    }
+    else if ( gVar37 == 160 && BIT_CHK( 0 + 0x0400 + 0x0800 + 477 ) == 1 )
+    {
+        var10 = 1;
+    }
+    else if ( gVar37 == 171 && BIT_CHK( 0 + 0x0400 + 0x0800 + 478 ) == 1 )
+    {
+        var10 = 1;
+    }
+    else if ( gVar37 == 180 && BIT_CHK( 0 + 0x0400 + 0x0800 + 479 ) == 1 )
+    {
+        var10 = 1;
+    }
+    else if ( gVar37 == 190 && BIT_CHK( 0 + 0x0400 + 0x0800 + 480 ) == 1 )
+    {
+        var10 = 1;
+    }
+    else if ( gVar37 == 201 && BIT_CHK( 0 + 0x0400 + 0x0800 + 481 ) == 1 )
+    {
+        var10 = 1;
+    }
+    else if ( gVar37 == 211 && BIT_CHK( 0 + 0x0400 + 0x0800 + 482 ) == 1 )
+    {
+        var10 = 1;
+    }
+    else if ( gVar37 == 220 && BIT_CHK( 0 + 0x0400 + 0x0800 + 483 ) == 1 )
+    {
+        var10 = 1;
+    }
+    else if ( gVar37 == 228 && BIT_CHK( 0 + 0x0400 + 0x0800 + 484 ) == 1 )
+    {
+        var10 = 1;
+    }
+    else if ( gVar37 == 236 && BIT_CHK( 0 + 0x0400 + 0x0800 + 485 ) == 1 )
+    {
+        var10 = 1;
+    }
+    else if ( gVar37 == 244 && BIT_CHK( 0 + 0x0400 + 0x0800 + 486 ) == 1 )
+    {
+        var10 = 1;
+    }
+    else if ( gVar37 == 252 && BIT_CHK( 0 + 0x0400 + 0x0800 + 487 ) == 1 )
+    {
+        var10 = 1;
+    }
+
+    EVT_CUTIN_FUNCTION_00B6( 0, 0, 0, gVar96, gVar97, 2, 2 );
+    OPEN_MSG_WIN();
+    
+    if ( var10 == 1 )
+    {
+        
+        if ( gVar21 == gVar22 )
+        {
+            MSG( gVar80 );
+        }
+        else 
+        {
+            MSG( gVar71 );
+        }
+
+    }
+    else 
+    {
+        MSG( gVar72 );
+    }
+
+    FUNCTION_00B7( 0 );
+    CLOSE_MSG_WIN();
+    
+    if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 993 ) == 1 )
+    {
+        debug_mode();
+    }
+
+}
+
+
+void f031_operation()
+{
+    OPEN_MSG_WIN();
+    
+    if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 579 ) == 1 )
+    {
+        EVT_CUTIN_FUNCTION_00B6( 0, 350, 10, 4, 4, 2, 2 );
+        MSG( F031_OPERATION_05 );
+    }
+    else if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 578 ) == 1 )
+    {
+        EVT_CUTIN_FUNCTION_00B6( 0, 350, 10, 4, 4, 2, 2 );
+        MSG( F031_OPERATION_04 );
+    }
+    else if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 577 ) == 1 )
+    {
+        EVT_CUTIN_FUNCTION_00B6( 0, 0, 0, 4, 4, 2, 0 );
+        MSG( F031_OPERATION_03 );
+    }
+    else if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 576 ) == 1 )
+    {
+        EVT_CUTIN_FUNCTION_00B6( 0, 0, 0, 4, 4, 2, 0 );
+        MSG( F031_OPERATION_02 );
+    }
+    else 
+    {
+        EVT_CUTIN_FUNCTION_00B6( 0, 0, 0, 4, 4, 2, 0 );
+        MSG( F031_OPERATION_01 );
+    }
+
+    FUNCTION_00B7( 0 );
+    CLOSE_MSG_WIN();
+}
+
+
+void f052_operation()
+{
+    OPEN_MSG_WIN();
+    MSG( F052_OPERATION );
+    CLOSE_MSG_WIN();
+}
+
+
+void f034_operation()
+{
+    OPEN_MSG_WIN();
+    
+    if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 661 ) == 1 )
+    {
+        EVT_CUTIN_FUNCTION_00B6( 0, 0, 0, 6, 4, 2, 0 );
+        MSG( F034_OPERATION_08 );
+    }
+    else if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 680 ) == 1 )
+    {
+        EVT_CUTIN_FUNCTION_00B6( 0, 0, 0, 6, 4, 2, 0 );
+        MSG( F034_OPERATION_07 );
+    }
+    else if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 677 ) == 1 )
+    {
+        EVT_CUTIN_FUNCTION_00B6( 0, 0, 0, 6, 4, 2, 0 );
+        MSG( F034_OPERATION_06 );
+    }
+    else if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 659 ) == 1 )
+    {
+        EVT_CUTIN_FUNCTION_00B6( 0, 0, 0, 6, 4, 2, 0 );
+        MSG( F034_OPERATION_05 );
+    }
+    else if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 658 ) == 1 )
+    {
+        EVT_CUTIN_FUNCTION_00B6( 0, 0, 0, 6, 4, 2, 0 );
+        MSG( F034_OPERATION_04 );
+    }
+    else if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 703 ) == 1 )
+    {
+        EVT_CUTIN_FUNCTION_00B6( 0, 0, 0, 6, 4, 2, 3 );
+        MSG( F034_OPERATION_03 );
+    }
+    else if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 657 ) == 1 )
+    {
+        EVT_CUTIN_FUNCTION_00B6( 0, 0, 0, 6, 4, 2, 1 );
+        MSG( F034_OPERATION_02 );
+    }
+    else 
+    {
+        EVT_CUTIN_FUNCTION_00B6( 0, 0, 0, 6, 4, 2, 0 );
+        MSG( F034_OPERATION_01 );
+    }
+
+    FUNCTION_00B7( 0 );
+    CLOSE_MSG_WIN();
+}
+
+
+void f035_operation()
+{
+    OPEN_MSG_WIN();
+    EVT_CUTIN_FUNCTION_00B6( 0, 0, 0, 6, 4, 2, 2 );
+    
+    if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 757 ) == 1 )
+    {
+        MSG( F035_OPERATION_02 );
+    }
+    else 
+    {
+        MSG( F035_OPERATION_01 );
+    }
+
+    FUNCTION_00B7( 0 );
+    CLOSE_MSG_WIN();
+}
+
+
+void box_animation()
+{
+    CALL_SFX( 3, 1 );
+    FLD_FUNCTION_0089( FUNCTION_00E2(), 1, 0, 0, 1.00f );
+    FUNCTION_000C( 25 );
+    FUNCTION_00E7();
+}
+
+
+void fes_order_party()
+{
+    gVar61 = 41;
+    gVar62 = 42;
+    gVar63 = 43;
+    gVar64 = 44;
+    gVar65 = 45;
+    gVar66 = 46;
+    gVar67 = 48;
+    gVar68 = 49;
+    gVar69 = 51;
+    gVar70 = 50;
+    gVar74 = 0x10;
+    gVar60 = 6;
+    gVar96 = 6;
+    gVar97 = 4;
+    gVar71 = 35;
+    gVar72 = 36;
+    gVar73 = 25;
+    gVar75 = 37;
+    gVar76 = 38;
+    gVar77 = 39;
+    gVar79 = 40;
+    gVar80 = 34;
+    int var12 = 0;
+    gVar37 = GET_FLOOR_ID();
+    check_party_member();
+    
+    if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 499 ) == 1 )
+    {
+        var12 = var12 + 2;
+    }
+
+    
+    if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 499 ) == 0 )
+    {
+        var12 = var12 + 1;
+    }
+
+    
+    if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 500 ) == 0 )
+    {
+        var12 = var12 + 4;
+    }
+
+    
+    if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 500 ) == 1 )
+    {
+        var12 = var12 + 8;
+    }
+
+    
+    if ( FUNCTION_018B( 6, 339 ) == 1 )
+    {
+        var12 = var12 + 0x10;
+    }
+    else 
+    {
+        var12 = var12 + 0x20;
+    }
+
+    
+    if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 993 ) == 0 )
+    {
+        var12 = var12 + 0x80;
+    }
+
+    
+    if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 495 ) == 1 )
+    {
+        fes_order_stop();
+        return;
+    }
+    else if ( gVar21 == gVar22 )
+    {
+        
+        if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 993 ) == 0 )
+        {
+            var12 = var12 + 0x80;
+        }
+
+        EVT_CUTIN_FUNCTION_00B6( 0, 0, 0, gVar96, gVar97, 2, 2 );
+        OPEN_MSG_WIN();
+        MSG( gVar73 );
+        order_for_huka();
+        return;
+    }
+    else 
+    {
+        OPEN_MSG_WIN();
+        MSG( gVar74 );
+    }
+
+    SET_SEL_CHOICE_KEYBIND( 6, 6 );
+    SET_MASK( var12 );
+    int var11 = SEL( ORDER_SEL );
+    CLOSE_MSG_WIN();
+    
+    if ( var11 == 0 )
+    {
+        BIT_OFF( 0 + 0x0400 + 0x0800 + 499 );
+        FUNCTION_011F( 0 );
+        FUNCTION_011C( gVar60, gVar75 );
+    }
+    else if ( var11 == 1 )
+    {
+        BIT_ON( 0 + 0x0400 + 0x0800 + 499 );
+        FUNCTION_011F( 1 );
+        FUNCTION_011C( gVar60, gVar76 );
+    }
+    else if ( var11 == 2 )
+    {
+        BIT_OFF( 0 + 0x0400 + 0x0800 + 500 );
+        FUNCTION_0120( 1 );
+        FUNCTION_011C( gVar60, gVar77 );
+    }
+    else if ( var11 == 3 )
+    {
+        BIT_ON( 0 + 0x0400 + 0x0800 + 500 );
+        FUNCTION_0120( 0 );
+        FUNCTION_011C( gVar60, gVar79 );
+    }
+    else if ( var11 == 4 )
+    {
+        FUNCTION_00B7( 0 );
+        EVT_CUTIN_FUNCTION_00B6( 0, 0, 0, gVar96, gVar97, 2, 0 );
+        OPEN_MSG_WIN();
+        order_to_change_bgm();
+        return;
+    }
+    else if ( var11 == 5 )
+    {
+        FUNCTION_00B7( 0 );
+        EVT_CUTIN_FUNCTION_00B6( 0, 0, 0, gVar96, gVar97, 2, 0 );
+        OPEN_MSG_WIN();
+        MSG( HUKA_ORDER );
+        order_for_huka();
+        return;
+    }
+    else if ( var11 == 6 )
+    {
+        FUNCTION_00B7( 0 );
+    }
+    else if ( var11 == 7 )
+    {
+        debug_mode();
+        return;
+    }
+
+}
+
+
+void fes_order_stop()
+{
+    EVT_CUTIN_FUNCTION_00B6( 0, 0, 0, gVar96, gVar97, 2, 2 );
+    OPEN_MSG_WIN();
+    MSG( gVar72 );
+    FUNCTION_00B7( 0 );
+    CLOSE_MSG_WIN();
+    
+    if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 993 ) == 1 )
+    {
+        debug_mode();
+    }
+
+}
+
+
+void order_to_change_bgm()
+{
+    int var14 = 0;
+    
+    if ( GET_CNT( 1 ) == 0 )
+    {
+        var14 = 48;
+    }
+    else if ( GET_CNT( 1 ) == 102 )
+    {
+        var14 = 33;
+    }
+    else if ( GET_CNT( 1 ) == 103 )
+    {
+        var14 = 34;
+    }
+    else if ( GET_CNT( 1 ) == 104 )
+    {
+        var14 = 36;
+    }
+    else if ( GET_CNT( 1 ) == 105 )
+    {
+        var14 = 40;
+    }
+
+    MSG( HUKA_ORDER_BGM_CHANGE );
+    SET_SEL_CHOICE_KEYBIND( 6, 5 );
+    SET_MASK( var14 );
+    int var13 = SEL( BGM_SEL );
+    
+    if ( var13 != 5 )
+    {
+        CLOSE_MSG_WIN();
+        FUNCTION_00B7( 0 );
+        FUNCTION_0186( 10 );
+        FUNCTION_000C( 30 );
+        EVT_CUTIN_FUNCTION_00B6( 0, 0, 0, 6, 4, 2, 1 );
+        OPEN_MSG_WIN();
+        
+        if ( var13 != 4 )
+        {
+            
+            if ( var13 == 0 )
+            {
+                SET_CNT( 1, 102 );
+                CALL_BGM( 102 );
+            }
+            else if ( var13 == 1 )
+            {
+                SET_CNT( 1, 103 );
+                CALL_BGM( 103 );
+            }
+            else if ( var13 == 2 )
+            {
+                SET_CNT( 1, 104 );
+                CALL_BGM( 104 );
+            }
+            else if ( var13 == 3 )
+            {
+                SET_CNT( 1, 105 );
+                CALL_BGM( 105 );
+            }
+
+            
+            if ( var14 == 48 )
+            {
+                MSG( HUKA_ORDER_BGM_START_DON );
+            }
+            else 
+            {
+                MSG( HUKA_ORDER_BGM_CHANGE_DO );
+            }
+
+        }
+        else if ( var13 == 4 )
+        {
+            SET_CNT( 1, 0 );
+            
+            if ( FUNCTION_01E9() == 1 )
+            {
+                
+                if ( GET_FLOOR_ID() >= 2 && GET_FLOOR_ID() <= 20 )
+                {
+                    CALL_BGM( 94 );
+                }
+                else if ( GET_FLOOR_ID() >= 21 && GET_FLOOR_ID() <= 40 )
+                {
+                    CALL_BGM( 95 );
+                }
+                else if ( GET_FLOOR_ID() >= 41 && GET_FLOOR_ID() <= 70 )
+                {
+                    CALL_BGM( 96 );
+                }
+                else if ( GET_FLOOR_ID() >= 71 && GET_FLOOR_ID() <= 100 )
+                {
+                    CALL_BGM( 97 );
+                }
+                else if ( GET_FLOOR_ID() >= 101 && GET_FLOOR_ID() <= 130 )
+                {
+                    CALL_BGM( 98 );
+                }
+                else if ( GET_FLOOR_ID() >= 131 && GET_FLOOR_ID() <= 160 )
+                {
+                    CALL_BGM( 99 );
+                }
+                else if ( GET_FLOOR_ID() >= 160 && GET_FLOOR_ID() <= 190 )
+                {
+                    CALL_BGM( 100 );
+                }
+
+            }
+            else if ( GET_FLOOR_ID() >= 2 && GET_FLOOR_ID() <= 0x10 || GET_FLOOR_ID() >= 290 && GET_FLOOR_ID() <= 299 )
+            {
+                CALL_BGM( 1 );
+            }
+            else if ( GET_FLOOR_ID() >= 17 && GET_FLOOR_ID() <= 0x40 )
+            {
+                CALL_BGM( 70 );
+            }
+            else if ( GET_FLOOR_ID() >= 65 && GET_FLOOR_ID() <= 114 )
+            {
+                CALL_BGM( 81 );
+            }
+            else if ( GET_FLOOR_ID() >= 115 && GET_FLOOR_ID() <= 164 )
+            {
+                CALL_BGM( 72 );
+            }
+            else if ( GET_FLOOR_ID() >= 164 && GET_FLOOR_ID() <= 214 )
+            {
+                CALL_BGM( 73 );
+            }
+            else if ( GET_FLOOR_ID() >= 215 && GET_FLOOR_ID() <= 254 )
+            {
+                CALL_BGM( 74 );
+            }
+            else if ( GET_FLOOR_ID() >= 255 && GET_FLOOR_ID() <= 263 )
+            {
+                CALL_BGM( 75 );
+            }
+
+            MSG( HUKA_ORDER_BGM_CHANGE_RE );
+        }
+
+    }
+
+    CLOSE_MSG_WIN();
+    FUNCTION_00B7( 0 );
+}
+
+
+void order_for_huka()
+{
+    int var16 = 0;
+    
+    if ( FUNCTION_018B( 6, 339 ) == 0 )
+    {
+        var16 = 1;
+    }
+
+    
+    if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 993 ) == 0 )
+    {
+        var16 = var16 + 8;
+    }
+
+    SET_SEL_CHOICE_KEYBIND( 6, 2 );
+    SET_MASK( var16 );
+    int var15 = SEL( HUKA_OREDER_SEL );
+    
+    if ( var15 == 0 )
+    {
+        MSG( HUKA_ORDER_ESCAPE );
+        SET_SEL_CHOICE_KEYBIND( 6, 1 );
+        
+        if ( FUNCTION_01E9() == 1 )
+        {
+            var15 = SEL( FES_ESCAPE_SEL );
+        }
+        else 
+        {
+            var15 = SEL( ESCAPE_SEL );
+        }
+
+        
+        if ( var15 == 0 )
+        {
+            MSG( HUKA_ORDER_ESCAPE_GO );
+            CLOSE_MSG_WIN();
+            FUNCTION_00B7( 0 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 121 );
+            return_to_entrance();
+            return;
+        }
+
+        MSG( HUKA_ORDER_RESTART );
+        order_for_huka();
+        return;
+    }
+    else if ( var15 == 1 )
+    {
+        order_to_change_bgm();
+        return;
+    }
+    else if ( var15 == 3 )
+    {
+        debug_mode();
+        return;
+    }
+
+    CLOSE_MSG_WIN();
+    FUNCTION_00B7( 0 );
+}
+
+
+void debug_mode()
+{
+    FUNCTION_00B7( 0 );
+    OPEN_MSG_WIN();
+    MSG( DEBUG_MODE );
+    SET_SEL_CHOICE_KEYBIND( 6, 3 );
+    int var17 = SEL( DEBUG_SEL );
+    CLOSE_MSG_WIN();
+    
+    if ( var17 == 0 )
+    {
+        item_transfer_all();
+        FADE( 2, 0 );
+        FADE_SYNC();
+        
+        if ( GET_FLOOR_ID() == 0 )
+        {
+            OPEN_MSG_WIN();
+            MSG( DEBUG_GOTO_ENTRANCE );
+            CLOSE_MSG_WIN();
+            SET_CNT( 1, 0 );
+            FUNCTION_0128( 1, 3 );
+            return;
+        }
+        else 
+        {
+            call_next_level();
+        }
+
+    }
+    else if ( var17 == 1 )
+    {
+        BIT_ON( 0 + 0x0400 + 0x0800 + 121 );
+        return_to_entrance();
+    }
+    else if ( var17 == 2 )
+    {
+        
+        if ( FUNCTION_01E9() == 1 )
+        {
+            
+            if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 208 ) == 0 )
+            {
+                BIT_ON( 0 + 0x0400 + 0x0800 + 208 );
+                BIT_ON( 0 + 0x0400 + 0x0800 + 176 );
+                BIT_ON( 0 + 0x0400 + 0x0800 + 177 );
+                BIT_ON( 0 + 0x0400 + 0x0800 + 178 );
+                BIT_ON( 0 + 0x0400 + 0x0800 + 179 );
+                BIT_ON( 0 + 0x0400 + 0x0800 + 180 );
+                BIT_ON( 0 + 0x0400 + 0x0800 + 181 );
+                BIT_ON( 0 + 0x0400 + 0x0800 + 182 );
+                BIT_ON( 0 + 0x0400 + 0x0800 + 183 );
+                BIT_ON( 0 + 0x0400 + 0x0800 + 184 );
+                BIT_ON( 0 + 0x0400 + 0x0800 + 185 );
+                BIT_ON( 0 + 0x0400 + 0x0800 + 186 );
+                BIT_ON( 0 + 0x0400 + 0x0800 + 187 );
+                BIT_ON( 0 + 0x0400 + 0x0800 + 188 );
+                BIT_ON( 0 + 0x0400 + 0x0800 + 189 );
+                BIT_ON( 0 + 0x0400 + 0x0800 + 190 );
+                BIT_ON( 0 + 0x0400 + 0x0800 + 191 );
+                BIT_ON( 0 + 0x0400 + 0x0800 + 192 );
+                BIT_ON( 0 + 0x0400 + 0x0800 + 193 );
+                BIT_ON( 0 + 0x0400 + 0x0800 + 194 );
+                BIT_ON( 0 + 0x0400 + 0x0800 + 195 );
+                BIT_ON( 0 + 0x0400 + 0x0800 + 196 );
+                BIT_ON( 0 + 0x0400 + 0x0800 + 197 );
+                BIT_ON( 0 + 0x0400 + 0x0800 + 198 );
+                BIT_ON( 0 + 0x0400 + 0x0800 + 199 );
+            }
+
+        }
+        else 
+        {
+            BIT_ON( 0 + 0x0400 + 0x0800 + 45 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 448 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 449 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 450 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 451 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 452 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 453 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 454 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 455 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 490 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 464 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 465 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 466 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 467 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 468 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 469 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 470 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 471 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 472 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 473 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 474 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 475 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 476 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 477 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 478 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 479 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 480 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 481 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 482 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 483 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 484 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 485 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 486 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 487 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 112 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 488 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 110 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 489 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 384 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 385 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 386 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 387 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 388 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 389 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 390 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 391 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 392 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 393 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 394 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 395 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 396 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 397 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 398 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 399 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 400 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 401 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 402 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 403 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 404 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 405 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 406 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 407 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 408 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 409 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 410 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 411 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 412 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 413 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 414 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 415 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 383 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 382 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 380 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 381 );
+            BIT_ON( 0 + 0x0400 + 0x0800 + 379 );
+        }
+
+    }
+
+}
+
+
+void call_nigth_dormitory()
+{
+    NEXT_DAY();
+}
+
+
+void call_tartaros()
+{
+    FUNCTION_0186( 15 );
+    FADE( 5, 30 );
+    FADE_SYNC();
+    BIT_ON( 0 + 0x0400 + 1541 );
+    
+    if ( CHECK_TIME_SPAN( 4, 20, 6, 11 ) == 1 )
+    {
+        
+        if ( BIT_CHK( 0 + 322 ) == 1 && CHECK_FATIGUE( 2 ) <= 2 )
+        {
+            ADD_MEMBER( 0, 2 );
+        }
+
+        
+        if ( BIT_CHK( 0 + 325 ) == 1 && CHECK_FATIGUE( 5 ) <= 2 )
+        {
+            ADD_MEMBER( 0, 5 );
+        }
+
+        
+        if ( BIT_CHK( 0 + 326 ) == 1 && CHECK_FATIGUE( 7 ) <= 2 )
+        {
+            ADD_MEMBER( 0, 7 );
+        }
+
+    }
+
+    SET_CNT( 1, 0 );
+    FUNCTION_00D6();
+}
+
+
+void check_party_member()
+{
+    gVar21 = 0;
+    gVar22 = 0;
+    gVar100 = 0;
+    gVar23 = 0;
+    gVar24 = 0;
+    gVar25 = 0;
+    gVar26 = 0;
+    gVar27 = 0;
+    gVar28 = 0;
+    gVar29 = 0;
+    gVar30 = 0;
+    int var19 = 0;
+    _230:
+    
+    if ( var19 < 3 )
+    {
+        
+        if ( FUNCTION_0173( var19 ) == 1 )
+        {
+            gVar100 = gVar100 + 1;
+        }
+
+        var19 = var19 + 1;
+        goto _230;
+    }
+
+    var19 = 0;
+    _234:
+    
+    if ( var19 < 3 )
+    {
+        
+        if ( GET_PARTY_ID( var19 ) == 2 )
+        {
+            gVar21 = gVar21 + 1;
+            gVar23 = 1;
+            
+            if ( GET_CUR_HP( 2 ) == 0 )
+            {
+                gVar22 = gVar22 + 1;
+            }
+
+        }
+        else if ( GET_PARTY_ID( var19 ) == 3 )
+        {
+            gVar21 = gVar21 + 1;
+            gVar24 = 1;
+            
+            if ( GET_CUR_HP( 3 ) == 0 )
+            {
+                gVar22 = gVar22 + 1;
+            }
+
+        }
+        else if ( GET_PARTY_ID( var19 ) == 4 )
+        {
+            gVar21 = gVar21 + 1;
+            gVar25 = 1;
+            
+            if ( GET_CUR_HP( 4 ) == 0 )
+            {
+                gVar22 = gVar22 + 1;
+            }
+
+        }
+        else if ( GET_PARTY_ID( var19 ) == 5 )
+        {
+            gVar21 = gVar21 + 1;
+            gVar26 = 1;
+            
+            if ( GET_CUR_HP( 5 ) == 0 )
+            {
+                gVar22 = gVar22 + 1;
+            }
+
+        }
+        else if ( GET_PARTY_ID( var19 ) == 7 )
+        {
+            gVar21 = gVar21 + 1;
+            gVar27 = 1;
+            
+            if ( GET_CUR_HP( 7 ) == 0 )
+            {
+                gVar22 = gVar22 + 1;
+            }
+
+        }
+        else if ( GET_PARTY_ID( var19 ) == 8 )
+        {
+            gVar21 = gVar21 + 1;
+            gVar28 = 1;
+            
+            if ( GET_CUR_HP( 8 ) == 0 )
+            {
+                gVar22 = gVar22 + 1;
+            }
+
+        }
+        else if ( GET_PARTY_ID( var19 ) == 9 )
+        {
+            gVar21 = gVar21 + 1;
+            gVar29 = 1;
+            
+            if ( GET_CUR_HP( 9 ) == 0 )
+            {
+                gVar22 = gVar22 + 1;
+            }
+
+        }
+        else if ( GET_PARTY_ID( var19 ) == 10 )
+        {
+            gVar21 = gVar21 + 1;
+            gVar30 = 1;
+            
+            if ( GET_CUR_HP( 10 ) == 0 )
+            {
+                gVar22 = gVar22 + 1;
+            }
+
+        }
+
+        var19 = var19 + 1;
+        goto _234;
+    }
+
+}
+
+
+void leave_member_partyout()
+{
+    int var20 = 2;
+    _261:
+    
+    if ( var20 >= 0 )
+    {
+        
+        if ( FUNCTION_0173( var20 ) == 1 )
+        {
+            int var21 = GET_PARTY_ID( var20 );
+            REMOVE_MEMBER( var21 );
+            FUNCTION_0151( var21 );
+        }
+
+        var20 = var20 - 1;
+        goto _261;
+    }
+
+    
+    if ( gVar23 == 1 && GET_CUR_HP( 2 ) == 0 )
+    {
+        REMOVE_MEMBER( 2 );
+        FUNCTION_0151( 2 );
+    }
+
+    
+    if ( gVar24 == 1 && GET_CUR_HP( 3 ) == 0 )
+    {
+        REMOVE_MEMBER( 3 );
+        FUNCTION_0151( 3 );
+    }
+
+    
+    if ( gVar25 == 1 && GET_CUR_HP( 4 ) == 0 )
+    {
+        REMOVE_MEMBER( 4 );
+        FUNCTION_0151( 4 );
+    }
+
+    
+    if ( gVar26 == 1 && GET_CUR_HP( 5 ) == 0 )
+    {
+        REMOVE_MEMBER( 5 );
+        FUNCTION_0151( 5 );
+    }
+
+    
+    if ( gVar27 == 1 && GET_CUR_HP( 7 ) == 0 )
+    {
+        REMOVE_MEMBER( 7 );
+        FUNCTION_0151( 7 );
+    }
+
+    
+    if ( gVar28 == 1 && GET_CUR_HP( 8 ) == 0 )
+    {
+        REMOVE_MEMBER( 8 );
+        FUNCTION_0151( 8 );
+    }
+
+    
+    if ( gVar29 == 1 && GET_CUR_HP( 9 ) == 0 )
+    {
+        REMOVE_MEMBER( 9 );
+        FUNCTION_0151( 9 );
+    }
+
+    
+    if ( gVar30 == 1 && GET_CUR_HP( 10 ) == 0 )
+    {
+        REMOVE_MEMBER( 10 );
+        FUNCTION_0151( 10 );
+    }
+
+}
+
+
+void party_tiredness()
+{
+    
+    if ( gVar37 == 2 || gVar37 == 6 || gVar37 == 11 || gVar37 == 15 )
+    {
+        BIT_ON( 0 + 0x0400 + 0x0800 + 36 );
+    }
+    else if ( gVar37 == 26 || gVar37 == 37 || gVar37 == 48 || gVar37 == 60 )
+    {
+        BIT_ON( 0 + 0x0400 + 0x0800 + 36 );
+    }
+    else if ( gVar37 == 73 || gVar37 == 86 || gVar37 == 99 || gVar37 == 111 )
+    {
+        BIT_ON( 0 + 0x0400 + 0x0800 + 36 );
+    }
+    else if ( gVar37 == 123 || gVar37 == 136 || gVar37 == 147 || gVar37 == 161 )
+    {
+        BIT_ON( 0 + 0x0400 + 0x0800 + 36 );
+    }
+    else if ( gVar37 == 172 || gVar37 == 181 || gVar37 == 191 || gVar37 == 202 || gVar37 == 212 )
+    {
+        BIT_ON( 0 + 0x0400 + 0x0800 + 36 );
+    }
+    else if ( gVar37 == 221 || gVar37 == 229 || gVar37 == 237 || gVar37 == 245 || gVar37 == 253 )
+    {
+        BIT_ON( 0 + 0x0400 + 0x0800 + 36 );
+    }
+    else if ( gVar37 == 290 )
+    {
+        BIT_ON( 0 + 0x0400 + 0x0800 + 36 );
+    }
+
+}
+
+
+void tartaros_level_check()
+{
+    int var22 = GET_FLOOR_ID() + 1;
+    
+    if ( GET_FLOOR_ID() < 264 )
+    {
+        
+        if ( GET_MONTH() == 4 && GET_DAY_OF_MONTH() == 20 || GET_MONTH() == 7 && GET_DAY_OF_MONTH() == 7 )
+        {
+            return;
+        }
+        else if ( GET_CNT( 8 ) < var22 )
+        {
+            SET_CNT( 8, var22 );
+        }
+
+    }
+
+}
+
+
+void tartaros_battle_check()
+{
+    gVar36 = 0;
+    
+    if ( gVar37 == 5 && BIT_CHK( 0 + 0x0400 + 0x0800 + 490 ) == 1 )
+    {
+        gVar36 = 1;
+    }
+    else if ( gVar37 == 10 && BIT_CHK( 0 + 0x0400 + 0x0800 + 464 ) == 1 )
+    {
+        gVar36 = 1;
+    }
+    else if ( gVar37 == 14 && BIT_CHK( 0 + 0x0400 + 0x0800 + 465 ) == 1 )
+    {
+        gVar36 = 1;
+    }
+    else if ( gVar37 == 25 && BIT_CHK( 0 + 0x0400 + 0x0800 + 466 ) == 1 )
+    {
+        gVar36 = 1;
+    }
+    else if ( gVar37 == 36 && BIT_CHK( 0 + 0x0400 + 0x0800 + 467 ) == 1 )
+    {
+        gVar36 = 1;
+    }
+    else if ( gVar37 == 47 && BIT_CHK( 0 + 0x0400 + 0x0800 + 468 ) == 1 )
+    {
+        gVar36 = 1;
+    }
+    else if ( gVar37 == 59 && BIT_CHK( 0 + 0x0400 + 0x0800 + 469 ) == 1 )
+    {
+        gVar36 = 1;
+    }
+    else if ( gVar37 == 72 && BIT_CHK( 0 + 0x0400 + 0x0800 + 470 ) == 1 )
+    {
+        gVar36 = 1;
+    }
+    else if ( gVar37 == 85 && BIT_CHK( 0 + 0x0400 + 0x0800 + 471 ) == 1 )
+    {
+        gVar36 = 1;
+    }
+    else if ( gVar37 == 98 && BIT_CHK( 0 + 0x0400 + 0x0800 + 472 ) == 1 )
+    {
+        gVar36 = 1;
+    }
+    else if ( gVar37 == 110 && BIT_CHK( 0 + 0x0400 + 0x0800 + 473 ) == 1 )
+    {
+        gVar36 = 1;
+    }
+    else if ( gVar37 == 122 && BIT_CHK( 0 + 0x0400 + 0x0800 + 474 ) == 1 )
+    {
+        gVar36 = 1;
+    }
+    else if ( gVar37 == 135 && BIT_CHK( 0 + 0x0400 + 0x0800 + 475 ) == 1 )
+    {
+        gVar36 = 1;
+    }
+    else if ( gVar37 == 146 && BIT_CHK( 0 + 0x0400 + 0x0800 + 476 ) == 1 )
+    {
+        gVar36 = 1;
+    }
+    else if ( gVar37 == 160 && BIT_CHK( 0 + 0x0400 + 0x0800 + 477 ) == 1 )
+    {
+        gVar36 = 1;
+    }
+    else if ( gVar37 == 171 && BIT_CHK( 0 + 0x0400 + 0x0800 + 478 ) == 1 )
+    {
+        gVar36 = 1;
+    }
+    else if ( gVar37 == 180 && BIT_CHK( 0 + 0x0400 + 0x0800 + 479 ) == 1 )
+    {
+        gVar36 = 1;
+    }
+    else if ( gVar37 == 190 && BIT_CHK( 0 + 0x0400 + 0x0800 + 480 ) == 1 )
+    {
+        gVar36 = 1;
+    }
+    else if ( gVar37 == 201 && BIT_CHK( 0 + 0x0400 + 0x0800 + 481 ) == 1 )
+    {
+        gVar36 = 1;
+    }
+    else if ( gVar37 == 211 && BIT_CHK( 0 + 0x0400 + 0x0800 + 482 ) == 1 )
+    {
+        gVar36 = 1;
+    }
+    else if ( gVar37 == 220 && BIT_CHK( 0 + 0x0400 + 0x0800 + 483 ) == 1 )
+    {
+        gVar36 = 1;
+    }
+    else if ( gVar37 == 228 && BIT_CHK( 0 + 0x0400 + 0x0800 + 484 ) == 1 )
+    {
+        gVar36 = 1;
+    }
+    else if ( gVar37 == 236 && BIT_CHK( 0 + 0x0400 + 0x0800 + 485 ) == 1 )
+    {
+        gVar36 = 1;
+    }
+    else if ( gVar37 == 244 && BIT_CHK( 0 + 0x0400 + 0x0800 + 486 ) == 1 )
+    {
+        gVar36 = 1;
+    }
+    else if ( gVar37 == 252 && BIT_CHK( 0 + 0x0400 + 0x0800 + 487 ) == 1 )
+    {
+        gVar36 = 1;
+    }
+
+}
+
+
+void member_sel_mask()
+{
+    gVar31 = 255;
+    
+    if ( gVar23 == 1 )
+    {
+        gVar31 = gVar31 - 1;
+    }
+
+    
+    if ( gVar24 == 1 )
+    {
+        gVar31 = gVar31 - 2;
+    }
+
+    
+    if ( gVar25 == 1 )
+    {
+        gVar31 = gVar31 - 4;
+    }
+
+    
+    if ( gVar26 == 1 )
+    {
+        gVar31 = gVar31 - 8;
+    }
+
+    
+    if ( gVar27 == 1 )
+    {
+        gVar31 = gVar31 - 0x10;
+    }
+
+    
+    if ( gVar28 == 1 )
+    {
+        gVar31 = gVar31 - 0x20;
+    }
+
+    
+    if ( gVar29 == 1 )
+    {
+        gVar31 = gVar31 - 0x40;
+    }
+
+    
+    if ( gVar30 == 1 )
+    {
+        gVar31 = gVar31 - 0x80;
+    }
+
+}
+
+
+void member_change()
+{
+    
+    if ( gVar32 == 0 )
+    {
+        REMOVE_MEMBER( 2 );
+    }
+    else if ( gVar32 == 1 )
+    {
+        REMOVE_MEMBER( 3 );
+    }
+    else if ( gVar32 == 2 )
+    {
+        REMOVE_MEMBER( 4 );
+    }
+    else if ( gVar32 == 3 )
+    {
+        REMOVE_MEMBER( 5 );
+    }
+    else if ( gVar32 == 4 )
+    {
+        REMOVE_MEMBER( 7 );
+    }
+    else if ( gVar32 == 5 )
+    {
+        REMOVE_MEMBER( 8 );
+    }
+    else if ( gVar32 == 6 )
+    {
+        REMOVE_MEMBER( 9 );
+    }
+    else if ( gVar32 == 7 )
+    {
+        REMOVE_MEMBER( 10 );
+    }
+
+}
+
+
+void call_myroom()
+{
+    BIT_OFF( 0 + 0x0400 + 0x0800 + 496 );
+    BIT_ON( 0 + 0x0400 + 0x0800 + 430 );
+    FUNCTION_0086( 0 );
+    FUNCTION_0086( 1 );
+    FUNCTION_0086( 2 );
+    
+    if ( GET_MONTH() == 5 && GET_DAY_OF_MONTH() == 2 )
+    {
+        BIT_OFF( 0 + 0x0400 + 0x0800 + 430 );
+        BIT_ON( 0 + 260 );
+        CALL_EVENT( 141, 2, 0 );
+    }
+    else if ( GET_MONTH() == 6 && GET_DAY_OF_MONTH() == 1 )
+    {
+        BIT_OFF( 0 + 0x0400 + 0x0800 + 430 );
+        BIT_ON( 0 + 0x40 );
+        CALL_EVENT( 169, 1, 0 );
+    }
+    else if ( GET_MONTH() == 6 && GET_DAY_OF_MONTH() == 22 )
+    {
+        BIT_OFF( 0 + 0x0400 + 0x0800 + 430 );
+        BIT_ON( 0 + 89 );
+        CALL_EVENT( 194, 1, 0 );
+    }
+    else if ( GET_MONTH() == 6 && GET_DAY_OF_MONTH() == 30 )
+    {
+        BIT_OFF( 0 + 0x0400 + 0x0800 + 430 );
+        BIT_ON( 0 + 91 );
+        CALL_EVENT( 196, 1, 0 );
+    }
+    else if ( GET_MONTH() == 7 && GET_DAY_OF_MONTH() == 30 )
+    {
+        BIT_OFF( 0 + 0x0400 + 0x0800 + 430 );
+        BIT_ON( 0 + 261 );
+        CALL_EVENT( 229, 2, 0 );
+    }
+    else if ( GET_MONTH() == 8 && GET_DAY_OF_MONTH() == 29 )
+    {
+        BIT_OFF( 0 + 0x0400 + 0x0800 + 430 );
+        BIT_ON( 0 + 262 );
+        CALL_EVENT( 246, 2, 0 );
+    }
+    else if ( GET_MONTH() == 9 && GET_DAY_OF_MONTH() == 12 )
+    {
+        BIT_OFF( 0 + 0x0400 + 0x0800 + 430 );
+        BIT_ON( 0 + 159 );
+        COMU_FUNCTION_011D( 22 );
+        FUNCTION_0191( 262, 1, 0, 22 );
+    }
+    else if ( GET_MONTH() == 9 && GET_DAY_OF_MONTH() == 27 )
+    {
+        BIT_OFF( 0 + 0x0400 + 0x0800 + 430 );
+        BIT_ON( 0 + 263 );
+        CALL_EVENT( 263, 2, 0 );
+    }
+    else if ( GET_MONTH() == 10 && GET_DAY_OF_MONTH() == 27 )
+    {
+        BIT_OFF( 0 + 0x0400 + 0x0800 + 430 );
+        BIT_ON( 0 + 264 );
+        CALL_EVENT( 279, 2, 0 );
+    }
+
+    NEXT_DAY();
+}
+
+
+void check_status()
+{
+    FUNCTION_01A6( 1 );
+    FUNCTION_01D5( gVar60 );
+    FRSTATUS_FUNCTION_0134( gVar60 );
+    FUNCTION_0136();
+    FUNCTION_000C( 1 );
+    FUNCTION_01D6( gVar60 );
+    FUNCTION_01A6( 0 );
+}
+
+
+void check_status_all()
+{
+    FRSTATUS_FUNCTION_0135( gVar60 );
+    FUNCTION_0136();
+    FUNCTION_000C( 1 );
+}
+
+
+void order_initialize()
+{
+    int var23 = 0;
+    party_tiredness();
+    BIT_OFF( 0 + 0x0400 + 0x0800 + 499 );
+    BIT_OFF( 0 + 0x0400 + 0x0800 + 500 );
+    
+    if ( gVar37 == 0 || gVar37 == 1 )
+    {
+        BIT_OFF( 0 + 0x0400 + 0x0800 + 498 );
+    }
+    else if ( FUNCTION_01E9() == 1 )
+    {
+        
+        if ( gVar37 == 8 || gVar37 == 9 || gVar37 == 0x10 )
+        {
+            var23 = 1;
+        }
+        else if ( gVar37 == 28 || gVar37 == 29 || gVar37 == 35 )
+        {
+            var23 = 1;
+        }
+        else if ( gVar37 == 46 || gVar37 == 47 || gVar37 == 53 || gVar37 == 54 || gVar37 == 60 )
+        {
+            var23 = 1;
+        }
+        else if ( gVar37 == 79 || gVar37 == 80 || gVar37 == 89 || gVar37 == 90 || gVar37 == 95 )
+        {
+            var23 = 1;
+        }
+        else if ( gVar37 == 107 || gVar37 == 108 || gVar37 == 116 || gVar37 == 117 || gVar37 == 125 )
+        {
+            var23 = 1;
+        }
+        else if ( gVar37 == 137 || gVar37 == 138 || gVar37 == 146 || gVar37 == 147 || gVar37 == 155 )
+        {
+            var23 = 1;
+        }
+        else if ( gVar37 == 168 || gVar37 == 169 || gVar37 == 178 || gVar37 == 179 || gVar37 == 186 || gVar37 == 187 )
+        {
+            var23 = 1;
+        }
+
+    }
+    else if ( gVar37 == 5 || gVar37 == 10 || gVar37 == 14 || gVar37 == 0x10 )
+    {
+        var23 = 1;
+    }
+    else if ( gVar37 == 25 || gVar37 == 36 || gVar37 == 40 || gVar37 == 47 || gVar37 == 59 || gVar37 == 0x40 )
+    {
+        var23 = 1;
+    }
+    else if ( gVar37 == 72 || gVar37 == 85 || gVar37 == 89 || gVar37 == 98 || gVar37 == 110 || gVar37 == 114 )
+    {
+        var23 = 1;
+    }
+    else if ( gVar37 == 122 || gVar37 == 135 || gVar37 == 139 || gVar37 == 146 || gVar37 == 160 || gVar37 == 164 )
+    {
+        var23 = 1;
+    }
+    else if ( gVar37 == 171 || gVar37 == 180 || gVar37 == 190 || gVar37 == 201 || gVar37 == 211 || gVar37 == 214 )
+    {
+        var23 = 1;
+    }
+    else if ( gVar37 == 220 || gVar37 == 228 || gVar37 == 236 || gVar37 == 244 || gVar37 == 236 || gVar37 == 244 || gVar37 == 252 || gVar37 == 254 || gVar37 == 258 || gVar37 == 262 || gVar37 == 263 )
+    {
+        var23 = 1;
+    }
+    else if ( gVar37 == 299 )
+    {
+        var23 = 1;
+    }
+
+    
+    if ( var23 == 1 )
+    {
+        BIT_ON( 0 + 0x0400 + 0x0800 + 495 );
+    }
+    else 
+    {
+        BIT_OFF( 0 + 0x0400 + 0x0800 + 495 );
+    }
+
+    BIT_ON( 0 + 0x0400 + 0x0800 + 498 );
+}
+
+
+void call_next_level()
+{
+    tartaros_level_check();
+    
+    if ( GET_FLOOR_ID() != 1 )
+    {
+        CALL_SFX( 2, 0 );
+        
+        if ( FUNCTION_01E9() == 1 )
+        {
+            
+            if ( BIT_CHK( 0 + 727 ) == 0 && GET_FLOOR_ID() == 186 )
+            {
+                BIT_OFF( 0 + 0x0400 + 0x0800 + 52 );
+                NEXT_DAY();
+                return;
+            }
+
+        }
+        else if ( GET_FLOOR_ID() == 1 || GET_FLOOR_ID() == 0x10 || GET_FLOOR_ID() == 0x40 || GET_FLOOR_ID() == 114 || GET_FLOOR_ID() == 164 || GET_FLOOR_ID() == 214 )
+        {
+            FUNCTION_0186( 15 );
+        }
+
+    }
+
+    FUNCTION_007E();
+}
+
+
+void fix_floor_box_animation()
+{
+    CALL_SFX( 3, 1 );
+    FLD_FUNCTION_0089( gVar38, 1, 0, 0, 1.00f );
+    FUNCTION_000C( 25 );
+    FUNCTION_0079( gVar38, 0 );
+}
+
+
+void check_vacancy()
+{
+    gVar33 = 0;
+    
+    if ( CHECK_FATIGUE( 2 ) >= 3 )
+    {
+        gVar33 = gVar33 + 1;
+    }
+
+    
+    if ( CHECK_FATIGUE( 3 ) >= 3 )
+    {
+        gVar33 = gVar33 + 1;
+    }
+
+    
+    if ( CHECK_FATIGUE( 4 ) >= 3 )
+    {
+        gVar33 = gVar33 + 1;
+    }
+
+    
+    if ( CHECK_FATIGUE( 5 ) >= 3 )
+    {
+        gVar33 = gVar33 + 1;
+    }
+
+    
+    if ( CHECK_FATIGUE( 7 ) >= 3 )
+    {
+        gVar33 = gVar33 + 1;
+    }
+
+    
+    if ( CHECK_FATIGUE( 8 ) >= 3 )
+    {
+        gVar33 = gVar33 + 1;
+    }
+
+    
+    if ( CHECK_FATIGUE( 9 ) >= 3 )
+    {
+        gVar33 = gVar33 + 1;
+    }
+
+    
+    if ( CHECK_FATIGUE( 10 ) >= 3 )
+    {
+        gVar33 = gVar33 + 1;
+    }
+
+}
+
+
+void fix_floor_box_anime_3()
+{
+    CALL_SFX( 3, 1 );
+    FLD_FUNCTION_0089( gVar40, 1, 0, 0, 1.00f );
+    FUNCTION_000C( 25 );
+    FUNCTION_0079( gVar40, 0 );
+}
+
+
+void fix_floor_box_anime_4()
+{
+    CALL_SFX( 3, 1 );
+    FLD_FUNCTION_0089( gVar42, 1, 0, 0, 1.00f );
+    FUNCTION_000C( 25 );
+    FUNCTION_0079( gVar42, 0 );
+}
+
+
+void item_transfer_all()
+{
+    int var26 = 0;
+    _401:
+    int var25 = 0;
+    int var24 = 0;
+    int var27 = 0;
+    
+    if ( var26 < 3 )
+    {
+        var25 = GET_PARTY_ID( var26 );
+        var24 = FUNCTION_014E( var25 );
+        
+        if ( var24 > 0 && GET_CUR_HP( var25 ) > 0 )
+        {
+            OPEN_MSG_WIN();
+            
+            if ( var25 == 2 )
+            {
+                MSG( gVar61 );
+            }
+            else if ( var25 == 3 )
+            {
+                MSG( gVar62 );
+            }
+            else if ( var25 == 4 )
+            {
+                MSG( gVar63 );
+            }
+            else if ( var25 == 5 )
+            {
+                MSG( gVar64 );
+            }
+            else if ( var25 == 7 )
+            {
+                MSG( gVar65 );
+            }
+            else if ( var25 == 8 )
+            {
+                MSG( gVar66 );
+            }
+            else if ( var25 == 9 )
+            {
+                MSG( gVar67 );
+            }
+            else if ( var25 == 10 )
+            {
+                MSG( gVar68 );
+            }
+
+            var27 = 0;
+            _412:
+            
+            if ( var27 < var24 )
+            {
+                SET_MSG_VAR( 0, FUNCTION_0152( var25, var27 ), 17 );
+                SET_MSG_VAR( 1, FUNCTION_014F( var25, var27 ), 17 );
+                SET_MSG_VAR( 2, FUNCTION_0150( var25, var27 ), 0 );
+                
+                if ( var24 - var27 >= 2 )
+                {
+                    var27 = var27 + 1;
+                    SET_MSG_VAR( 3, FUNCTION_0152( var25, var27 ), 17 );
+                    SET_MSG_VAR( 4, FUNCTION_014F( var25, var27 ), 17 );
+                    SET_MSG_VAR( 5, FUNCTION_0150( var25, var27 ), 0 );
+                    MSG( gVar69 );
+                }
+                else 
+                {
+                    MSG( gVar70 );
+                }
+
+                var27 = var27 + 1;
+                goto _412;
+            }
+
+            CLOSE_MSG_WIN();
+            CAMP_FUNCTION_0144( var25 );
+            FUNCTION_0145();
+            FUNCTION_0151( var25 );
+        }
+
+        var26 = var26 + 1;
+        goto _401;
+    }
+
+}
+
+
+void party_talk()
+{
+    int var31 = 0;
+    SET_SEL_CHOICE_KEYBIND( 6, 2 );
+    int var29 = 0;
+    int var30 = 0;
+    
+    if ( FUNCTION_018B( gVar60, 192 ) == 0 && FUNCTION_018B( gVar60, 193 ) == 0 && FUNCTION_018B( gVar60, 194 ) == 0 && FUNCTION_018B( gVar60, 195 ) == 0 && FUNCTION_018B( gVar60, 196 ) == 0 && FUNCTION_018B( gVar60, 197 ) == 0 )
+    {
+        var31 = var31 + 2;
+    }
+    else if ( FUNCTION_01E9() == 1 && GET_FLOOR_ID() == 1 || FUNCTION_01E9() == 1 && GET_FLOOR_ID() == 0 )
+    {
+        var31 = var31 + 2;
+    }
+
+    SET_MASK( var31 );
+    int var28 = SEL( gVar72 );
+    
+    if ( var28 == 0 )
+    {
+        equip_transfer();
+        
+        if ( gVar41 == 0 && var31 < 2 )
+        {
+            OPEN_MSG_WIN();
+            MSG( gVar78 );
+            party_talk();
+        }
+
+    }
+    else if ( var28 == 1 )
+    {
+        var29 = FUNCTION_018A( gVar60 );
+        var30 = GET_CNT( 0 ) * 15;
+        
+        if ( var29 == 0 )
+        {
+            CLOSE_MSG_WIN();
+            FUNCTION_000C( var30 );
+            OPEN_MSG_WIN();
+            MSG( gVar74 );
+        }
+        else if ( var29 == 1 )
+        {
+            CLOSE_MSG_WIN();
+            FUNCTION_000C( var30 );
+            OPEN_MSG_WIN();
+            MSG( gVar75 );
+        }
+        else if ( var29 == 2 )
+        {
+            MSG( gVar76 );
+        }
+        else if ( var29 == 4 )
+        {
+            MSG( gVar77 );
+        }
+
+    }
+
+    CLOSE_MSG_WIN();
+}
+
+
+void equip_transfer()
+{
+    int var33 = 0;
+    int var32 = 0;
+    int var34 = 0;
+    
+    if ( BIT_CHK( gVar91 ) == 1 )
+    {
+        MSG( gVar67 );
+        var33 = 0;
+        var32 = 0;
+        _431:
+        
+        if ( var32 < 4 )
+        {
+            
+            if ( FUNCTION_0153( gVar60, var32 ) == 1 )
+            {
+                var33 = var33 + 1;
+            }
+
+            var32 = var32 + 1;
+            goto _431;
+        }
+
+        
+        if ( var33 > 0 )
+        {
+            MSG( gVar68 );
+            var32 = 0;
+            _435:
+            
+            if ( var32 < 4 )
+            {
+                
+                if ( FUNCTION_0153( gVar60, var32 ) == 1 )
+                {
+                    var33 = var33 - 1;
+                    SET_MSG_VAR( 0, FUNCTION_0154( gVar60, var32 ), 17 );
+                    SET_MSG_VAR( 1, FUNCTION_0155( gVar60, var32 ), 17 );
+                    
+                    if ( var33 > 0 )
+                    {
+                        var32 = var32 + 1;
+                        _437:
+                        
+                        if ( var34 == 0 )
+                        {
+                            
+                            if ( FUNCTION_0153( gVar60, var32 ) == 1 )
+                            {
+                                var33 = var33 - 1;
+                                SET_MSG_VAR( 2, FUNCTION_0154( gVar60, var32 ), 17 );
+                                SET_MSG_VAR( 3, FUNCTION_0155( gVar60, var32 ), 17 );
+                                var34 = 1;
+                            }
+                            else 
+                            {
+                                var32 = var32 + 1;
+                            }
+
+                            goto _437;
+                        }
+
+                        var34 = 0;
+                        MSG( gVar69 );
+                    }
+                    else 
+                    {
+                        MSG( gVar70 );
+                    }
+
+                }
+
+                var32 = var32 + 1;
+                goto _435;
+            }
+
+            FLD_FUNCTION_0156( gVar60 );
+            FUNCTION_01A6( 1 );
+            CAMP_FUNCTION_0144( 1 );
+            FUNCTION_0145();
+            FUNCTION_01A6( 0 );
+        }
+
+        BIT_OFF( gVar91 );
+    }
+
+    CLOSE_MSG_WIN();
+    item_transfer();
+}
+
+
+void tartaros_upstair()
+{
+    gVar37 = GET_FLOOR_ID();
+    check_party_member();
+    
+    if ( gVar100 >= 1 || gVar22 >= 1 )
+    {
+        OPEN_MSG_WIN();
+        EVT_CUTIN_FUNCTION_00B6( 0, 0, 0, gVar96, gVar97, 2, 2 );
+        
+        if ( gVar22 >= 1 && gVar100 >= 1 )
+        {
+            MSG( gVar71 );
+        }
+        else if ( gVar100 >= 1 )
+        {
+            MSG( gVar72 );
+        }
+        else if ( gVar22 >= 1 )
+        {
+            MSG( gVar73 );
+        }
+
+        SET_SEL_CHOICE_KEYBIND( 6, 1 );
+        
+        if ( SEL( gVar79 ) != 0 )
+        {
+            FUNCTION_00B7( 0 );
+            CLOSE_MSG_WIN();
+            return;
+        }
+
+        MSG( gVar77 );
+        FUNCTION_00B7( 0 );
+        CLOSE_MSG_WIN();
+    }
+
+    leave_member_partyout();
+    item_transfer_all();
+    FADE( 2, 0 );
+    FADE_SYNC();
+    heal_wave();
+    call_next_level();
+}
+
+
+void dungeon_comment()
+{
+    int var37 = 0;
+    int var35 = GET_CNT( 8 );
+    int var36 = GET_CNT( 12 );
+    
+    if ( var35 >= var36 )
+    {
+        
+        if ( var35 >= 2 && var35 <= 0x10 )
+        {
+            
+            if ( var35 == 2 && var36 <= 2 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 3 && var36 <= 3 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 4 && var36 <= 4 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 6 && var36 <= 6 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 7 && var36 <= 7 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 8 && var36 <= 8 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 9 && var36 <= 9 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 11 && var36 <= 11 )
+            {
+                BIT_ON( 0 + 0x0400 + 0x0800 + 61 );
+                var37 = 1;
+            }
+            else if ( var35 == 12 && var36 <= 12 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 13 && var36 <= 13 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 15 && var36 <= 15 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 0x10 && var36 <= 0x10 )
+            {
+                var37 = 1;
+            }
+
+        }
+        else if ( var35 >= 17 && var35 <= 40 )
+        {
+            
+            if ( var35 == 17 && var36 <= 17 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 18 && var36 <= 18 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 19 && var36 <= 19 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 20 && var36 <= 20 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 21 && var36 <= 21 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 22 && var36 <= 22 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 23 && var36 <= 23 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 24 && var36 <= 24 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 26 && var36 <= 26 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 27 && var36 <= 27 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 28 && var36 <= 28 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 29 && var36 <= 29 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 30 && var36 <= 30 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 31 && var36 <= 31 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 0x20 && var36 <= 0x20 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 33 && var36 <= 33 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 34 && var36 <= 34 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 35 && var36 <= 35 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 37 && var36 <= 37 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 38 && var36 <= 38 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 39 && var36 <= 39 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 40 && var36 <= 40 )
+            {
+                var37 = 1;
+            }
+
+        }
+        else if ( var35 >= 41 && var35 <= 0x40 )
+        {
+            
+            if ( var35 == 41 && var36 <= 41 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 42 && var36 <= 42 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 43 && var36 <= 43 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 44 && var36 <= 44 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 45 && var36 <= 45 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 46 && var36 <= 46 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 48 && var36 <= 48 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 49 && var36 <= 49 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 50 && var36 <= 50 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 51 && var36 <= 51 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 52 && var36 <= 52 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 53 && var36 <= 53 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 54 && var36 <= 54 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 55 && var36 <= 55 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 56 && var36 <= 56 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 57 && var36 <= 57 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 58 && var36 <= 58 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 60 && var36 <= 60 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 61 && var36 <= 61 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 62 && var36 <= 62 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 63 && var36 <= 63 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 0x40 && var36 <= 0x40 )
+            {
+                var37 = 1;
+            }
+
+        }
+        else if ( var35 >= 65 && var35 <= 89 )
+        {
+            
+            if ( var35 == 65 && var36 <= 65 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 66 && var36 <= 66 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 67 && var36 <= 67 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 68 && var36 <= 68 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 69 && var36 <= 69 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 70 && var36 <= 70 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 71 && var36 <= 71 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 73 && var36 <= 73 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 74 && var36 <= 74 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 75 && var36 <= 75 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 76 && var36 <= 76 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 77 && var36 <= 77 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 78 && var36 <= 78 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 79 && var36 <= 79 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 80 && var36 <= 80 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 81 && var36 <= 81 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 82 && var36 <= 82 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 83 && var36 <= 83 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 84 && var36 <= 84 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 86 && var36 <= 86 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 87 && var36 <= 87 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 88 && var36 <= 88 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 89 && var36 <= 89 )
+            {
+                var37 = 1;
+            }
+
+        }
+        else if ( var35 >= 90 && var35 <= 114 )
+        {
+            
+            if ( var35 == 90 && var36 <= 90 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 91 && var36 <= 91 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 92 && var36 <= 92 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 93 && var36 <= 93 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 94 && var36 <= 94 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 95 && var36 <= 95 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 96 && var36 <= 96 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 97 && var36 <= 97 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 99 && var36 <= 99 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 100 && var36 <= 100 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 101 && var36 <= 101 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 102 && var36 <= 102 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 103 && var36 <= 103 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 104 && var36 <= 104 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 105 && var36 <= 105 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 106 && var36 <= 106 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 107 && var36 <= 107 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 108 && var36 <= 108 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 109 && var36 <= 109 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 111 && var36 <= 111 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 112 && var36 <= 112 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 113 && var36 <= 113 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 114 && var36 <= 114 )
+            {
+                var37 = 1;
+            }
+
+        }
+        else if ( var35 >= 115 && var35 <= 139 )
+        {
+            
+            if ( var35 == 115 && var36 <= 115 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 116 && var36 <= 116 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 117 && var36 <= 117 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 118 && var36 <= 118 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 119 && var36 <= 119 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 120 && var36 <= 120 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 121 && var36 <= 121 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 123 && var36 <= 123 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 124 && var36 <= 124 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 125 && var36 <= 125 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 126 && var36 <= 126 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 127 && var36 <= 127 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 0x80 && var36 <= 0x80 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 129 && var36 <= 129 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 130 && var36 <= 130 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 131 && var36 <= 131 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 132 && var36 <= 132 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 133 && var36 <= 133 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 134 && var36 <= 134 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 136 && var36 <= 136 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 137 && var36 <= 137 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 138 && var36 <= 138 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 139 && var36 <= 139 )
+            {
+                var37 = 1;
+            }
+
+        }
+        else if ( var35 >= 140 && var35 <= 164 )
+        {
+            
+            if ( var35 == 140 && var36 <= 140 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 141 && var36 <= 141 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 142 && var36 <= 142 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 143 && var36 <= 143 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 144 && var36 <= 144 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 145 && var36 <= 145 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 147 && var36 <= 147 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 148 && var36 <= 148 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 149 && var36 <= 149 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 150 && var36 <= 150 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 151 && var36 <= 151 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 152 && var36 <= 152 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 153 && var36 <= 153 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 154 && var36 <= 154 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 155 && var36 <= 155 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 156 && var36 <= 156 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 157 && var36 <= 157 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 158 && var36 <= 158 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 159 && var36 <= 159 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 161 && var36 <= 161 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 162 && var36 <= 162 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 163 && var36 <= 163 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 164 && var36 <= 164 )
+            {
+                var37 = 1;
+            }
+
+        }
+        else if ( var35 >= 165 && var35 <= 214 )
+        {
+            
+            if ( var35 == 165 && var36 <= 165 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 166 && var36 <= 166 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 167 && var36 <= 167 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 168 && var36 <= 168 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 169 && var36 <= 169 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 170 && var36 <= 170 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 172 && var36 <= 172 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 173 && var36 <= 173 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 174 && var36 <= 174 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 175 && var36 <= 175 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 176 && var36 <= 176 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 177 && var36 <= 177 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 178 && var36 <= 178 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 179 && var36 <= 179 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 181 && var36 <= 181 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 182 && var36 <= 182 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 183 && var36 <= 183 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 184 && var36 <= 184 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 185 && var36 <= 185 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 186 && var36 <= 186 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 187 && var36 <= 187 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 188 && var36 <= 188 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 189 && var36 <= 189 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 191 && var36 <= 191 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 192 && var36 <= 192 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 193 && var36 <= 193 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 194 && var36 <= 194 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 195 && var36 <= 195 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 196 && var36 <= 196 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 197 && var36 <= 197 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 198 && var36 <= 198 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 199 && var36 <= 199 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 200 && var36 <= 200 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 202 && var36 <= 202 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 203 && var36 <= 203 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 204 && var36 <= 204 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 205 && var36 <= 205 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 206 && var36 <= 206 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 207 && var36 <= 207 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 208 && var36 <= 208 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 209 && var36 <= 209 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 210 && var36 <= 210 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 212 && var36 <= 212 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 213 && var36 <= 213 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 214 && var36 <= 214 )
+            {
+                var37 = 1;
+            }
+
+        }
+        else if ( var35 >= 215 && var35 <= 263 )
+        {
+            
+            if ( var35 == 215 && var36 <= 215 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 216 && var36 <= 216 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 217 && var36 <= 217 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 218 && var36 <= 218 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 219 && var36 <= 219 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 221 && var36 <= 221 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 222 && var36 <= 222 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 223 && var36 <= 223 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 224 && var36 <= 224 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 225 && var36 <= 225 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 226 && var36 <= 226 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 227 && var36 <= 227 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 229 && var36 <= 229 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 230 && var36 <= 230 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 231 && var36 <= 231 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 232 && var36 <= 232 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 233 && var36 <= 233 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 234 && var36 <= 234 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 235 && var36 <= 235 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 237 && var36 <= 237 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 238 && var36 <= 238 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 239 && var36 <= 239 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 240 && var36 <= 240 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 241 && var36 <= 241 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 242 && var36 <= 242 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 243 && var36 <= 243 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 245 && var36 <= 245 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 246 && var36 <= 246 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 247 && var36 <= 247 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 248 && var36 <= 248 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 249 && var36 <= 249 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 250 && var36 <= 250 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 251 && var36 <= 251 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 253 && var36 <= 253 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 254 && var36 <= 254 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 255 && var36 <= 255 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 0x0100 && var36 <= 0x0100 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 257 && var36 <= 257 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 259 && var36 <= 259 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 260 && var36 <= 260 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 261 && var36 <= 261 )
+            {
+                var37 = 1;
+            }
+            else if ( var35 == 253 && var36 <= 253 )
+            {
+                var37 = 1;
+            }
+
+        }
+
+        var36 = var35 + 1;
+        SET_CNT( 12, var36 );
+    }
+
+    tartaros_battle_check();
+    
+    if ( var37 == 1 || gVar36 == 1 )
+    {
+        OPEN_MSG_WIN();
+        
+        if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 51 ) == 1 || FUNCTION_01E9() == 1 )
+        {
+            EVT_CUTIN_FUNCTION_00B6( 0, 0, 0, 6, 4, 2, 0 );
+            MSG( gVar61 );
+        }
+        else 
+        {
+            EVT_CUTIN_FUNCTION_00B6( 0, 0, 0, 4, 4, 2, 0 );
+            MSG( gVar62 );
+        }
+
+        CLOSE_MSG_WIN();
+        FUNCTION_00B7( 0 );
+    }
+
+}
+
+
+void dungeon_escape()
+{
+    OPEN_MSG_WIN();
+    
+    if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 51 ) == 1 || FUNCTION_01E9() == 1 )
+    {
+        EVT_CUTIN_FUNCTION_00B6( 0, 0, 0, 6, 4, 2, 0 );
+        MSG( gVar71 );
+    }
+    else 
+    {
+        EVT_CUTIN_FUNCTION_00B6( 0, 0, 0, 4, 4, 2, 0 );
+        MSG( gVar72 );
+    }
+
+    SET_SEL_CHOICE_KEYBIND( 6, 1 );
+    
+    if ( SEL( gVar75 ) == 0 )
+    {
+        
+        if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 51 ) == 1 || FUNCTION_01E9() == 1 )
+        {
+            MSG( gVar73 );
+        }
+        else 
+        {
+            MSG( gVar74 );
+        }
+
+        FUNCTION_00B7( 0 );
+        CLOSE_MSG_WIN();
+        item_transfer_all();
+        FADE( 6, 10 );
+        FADE_SYNC();
+        CALL_BTL_SFX( 3, 5 );
+        SET_CNT( 1, 0 );
+        
+        if ( FUNCTION_01E9() == 1 )
+        {
+            
+            if ( GET_FLOOR_ID() >= 2 && GET_FLOOR_ID() <= 20 )
+            {
+                FUNCTION_0128( 1, 1 );
+                return;
+            }
+            else if ( GET_FLOOR_ID() >= 21 && GET_FLOOR_ID() <= 40 )
+            {
+                FUNCTION_0128( 1, 3 );
+                return;
+            }
+            else if ( GET_FLOOR_ID() >= 41 && GET_FLOOR_ID() <= 70 )
+            {
+                FUNCTION_0128( 1, 5 );
+                return;
+            }
+            else if ( GET_FLOOR_ID() >= 71 && GET_FLOOR_ID() <= 100 )
+            {
+                FUNCTION_0128( 1, 8 );
+                return;
+            }
+            else if ( GET_FLOOR_ID() >= 101 && GET_FLOOR_ID() <= 130 )
+            {
+                FUNCTION_0128( 1, 11 );
+                return;
+            }
+            else if ( GET_FLOOR_ID() >= 131 && GET_FLOOR_ID() <= 160 )
+            {
+                FUNCTION_0128( 1, 14 );
+                return;
+            }
+            else if ( GET_FLOOR_ID() >= 161 && GET_FLOOR_ID() <= 190 )
+            {
+                FUNCTION_0128( 1, 17 );
+                return;
+            }
+
+        }
+        else 
+        {
+            FUNCTION_0128( 1, 3 );
+            return;
+        }
+
+    }
+
+    FUNCTION_00B7( 0 );
+    CLOSE_MSG_WIN();
+}
+
+
+void end_gather()
+{
+}
+
+
+void party_find_stair()
+{
+}
+
+
+void party_find_escape()
+{
+}
+
+
+void end_tutorial_dungeon()
+{
+    REMOVE_MEMBER( 2 );
+    REMOVE_MEMBER( 5 );
+    BIT_OFF( 0 + 0x0400 + 0x0800 + 509 );
+    BIT_OFF( 0 + 0x0400 + 0x0800 + 507 );
+    COMU_FUNCTION_011D( 0 );
+    BIT_ON( 0 + 35 );
+    FUNCTION_0191( 140, 2, 0, 0 );
+    SET_CNT( 1, 0 );
+    FUNCTION_0128( 1, 7 );
+}
+
+
+void item_transfer()
+{
+    gVar41 = 0;
+    int var46 = 0;
+    int var47 = 0;
+    int var38 = FUNCTION_00CC( gVar60, 0 );
+    int var39 = FUNCTION_00CC( gVar60, 1 );
+    int var40 = FUNCTION_00CC( gVar60, 2 );
+    int var41 = FUNCTION_00CC( gVar60, 3 );
+    check_status();
+    int var42 = FUNCTION_00CC( gVar60, 0 );
+    int var43 = FUNCTION_00CC( gVar60, 1 );
+    int var44 = FUNCTION_00CC( gVar60, 2 );
+    int var45 = FUNCTION_00CC( gVar60, 3 );
+    
+    if ( var38 != var42 || var39 != var43 || var40 != var44 || var41 != var45 )
+    {
+        
+        if ( gVar60 == 2 )
+        {
+            
+            if ( var40 != var44 )
+            {
+                
+                if ( var44 == 2000 + 56 || var44 == 2000 + 52 )
+                {
+                    var46 = var44;
+                }
+
+            }
+
+            
+            if ( var39 != var43 )
+            {
+                
+                if ( var43 == 1000 + 82 || var43 == 1000 + 117 )
+                {
+                    var47 = var43;
+                }
+                else if ( var43 == 1000 + 57 || var43 == 1000 + 58 || var43 == 1000 + 54 )
+                {
+                    var46 = var43;
+                }
+
+            }
+
+        }
+        else if ( gVar60 == 3 )
+        {
+            
+            if ( var39 != var43 )
+            {
+                
+                if ( var43 == 1000 + 126 )
+                {
+                    
+                    if ( BIT_CHK( 0 + 223 ) == 1 )
+                    {
+                        var47 = var43;
+                    }
+                    else 
+                    {
+                        var46 = var43;
+                    }
+
+                }
+
+            }
+
+        }
+        else if ( gVar60 == 4 )
+        {
+            
+            if ( var40 != var44 )
+            {
+                
+                if ( var44 == 2000 + 56 || var44 == 2000 + 52 )
+                {
+                    var46 = var44;
+                }
+
+            }
+
+            
+            if ( var39 != var43 )
+            {
+                
+                if ( var43 == 1000 + 84 || var43 == 1000 + 118 )
+                {
+                    var47 = var43;
+                }
+                else if ( var43 == 1000 + 57 || var43 == 1000 + 58 || var43 == 1000 + 54 )
+                {
+                    var46 = var43;
+                }
+
+            }
+
+        }
+        else if ( gVar60 == 5 )
+        {
+            
+            if ( var40 != var44 )
+            {
+                
+                if ( var44 == 2000 + 36 || var44 == 2000 + 29 )
+                {
+                    var46 = var44;
+                }
+
+            }
+
+            
+            if ( var38 != var42 )
+            {
+                
+                if ( var42 == 0 + 22 )
+                {
+                    var46 = var42;
+                }
+
+            }
+
+            
+            if ( var39 != var43 )
+            {
+                
+                if ( var43 == 1000 + 88 )
+                {
+                    var47 = var43;
+                }
+                else if ( var43 == 1000 + 38 || var43 == 1000 + 45 )
+                {
+                    var46 = var43;
+                }
+
+            }
+
+        }
+        else if ( gVar60 == 7 )
+        {
+            
+            if ( var40 != var44 )
+            {
+                
+                if ( var44 == 2000 + 36 || var44 == 2000 + 29 )
+                {
+                    var46 = var44;
+                }
+
+            }
+
+            
+            if ( var39 != var43 )
+            {
+                
+                if ( var43 == 1000 + 83 )
+                {
+                    var47 = var43;
+                }
+                else if ( var43 == 1000 + 38 || var43 == 1000 + 45 )
+                {
+                    var46 = var43;
+                }
+
+            }
+
+        }
+        else if ( gVar60 == 8 )
+        {
+            
+            if ( var40 != var44 )
+            {
+                
+                if ( var44 == 2000 + 12 || var44 == 2000 + 37 || var44 == 2000 + 13 || var44 == 2000 + 14 )
+                {
+                    var46 = var44;
+                }
+
+            }
+
+            
+            if ( var39 != var43 )
+            {
+                
+                if ( var43 == 1000 + 38 )
+                {
+                    var47 = var43;
+                }
+                else if ( var43 == 1000 + 46 )
+                {
+                    var46 = var43;
+                }
+
+            }
+
+        }
+        else if ( gVar60 == 9 )
+        {
+            
+            if ( var40 != var44 )
+            {
+                
+                if ( var44 == 2000 + 12 || var44 == 2000 + 10 )
+                {
+                    var46 = var44;
+                }
+
+            }
+
+            
+            if ( var38 != var42 )
+            {
+                
+                if ( var42 == 0 + 117 )
+                {
+                    var46 = var42;
+                }
+
+            }
+
+            
+            if ( var39 != var43 )
+            {
+                
+                if ( var43 == 1000 + 38 )
+                {
+                    var47 = var43;
+                }
+                else if ( var43 == 1000 + 39 )
+                {
+                    var46 = var43;
+                }
+
+            }
+
+        }
+
+        gVar41 = 1;
+        
+        if ( var47 > 0 )
+        {
+            OPEN_MSG_WIN();
+            MSG( gVar81 );
+            CLOSE_MSG_WIN();
+        }
+        else if ( var46 > 0 )
+        {
+            OPEN_MSG_WIN();
+            MSG( gVar73 );
+            CLOSE_MSG_WIN();
+        }
+        else 
+        {
+            OPEN_MSG_WIN();
+            MSG( gVar71 );
+            CLOSE_MSG_WIN();
+        }
+
+    }
+
+}
+
+
+void heal_wave()
+{
+    int var52 = 0;
+    int var48 = 0;
+    int var49 = 0;
+    int var50 = 0;
+    int var51 = 0;
+    
+    if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 51 ) == 1 && FUNCTION_018B( 6, 340 ) == 1 || FUNCTION_01E9() == 1 && FUNCTION_018B( 6, 340 ) == 1 )
+    {
+        var52 = 0;
+        _814:
+        
+        if ( var52 < 3 )
+        {
+            var48 = GET_PARTY_ID( var52 );
+            
+            if ( var48 != 0 )
+            {
+                var49 = GET_TOT_HP( var48 );
+                var50 = GET_CUR_HP( var48 );
+                var51 = var50 + var49 * 15 / 100;
+                
+                if ( var51 > var49 )
+                {
+                    SET_HP( var48, var49 );
+                }
+                else 
+                {
+                    SET_HP( var48, var51 );
+                }
+
+            }
+
+            var52 = var52 + 1;
+            goto _814;
+        }
+
+        var49 = GET_TOT_HP( 1 );
+        var50 = GET_CUR_HP( 1 );
+        var51 = var50 + var49 * 15 / 100;
+        
+        if ( var51 > var49 )
+        {
+            SET_HP( 1, var49 );
+        }
+        else 
+        {
+            SET_HP( 1, var51 );
+        }
+
+    }
+
+}
+
+
+void tartaros_talk()
+{
+    gVar37 = GET_FLOOR_ID();
+    tartaros_battle_check();
+    OPEN_MSG_WIN();
+    
+    if ( gVar36 == 1 )
+    {
+        MSG( gVar79 );
+    }
+    else if ( CHECK_FATIGUE( gVar60 ) == 5 )
+    {
+        MSG( gVar61 );
+    }
+    else if ( CHECK_FATIGUE( gVar60 ) == 3 )
+    {
+        MSG( gVar62 );
+    }
+    else if ( CHECK_FATIGUE( gVar60 ) == 2 )
+    {
+        MSG( gVar63 );
+    }
+    else 
+    {
+        MSG( gVar64 );
+    }
+
+    party_talk();
+}
+

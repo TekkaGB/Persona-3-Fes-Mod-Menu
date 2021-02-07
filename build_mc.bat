@@ -1,6 +1,6 @@
-SET COMPILER="D:\@Persona Modding tools\AtlusScriptCompiler\Tool\AtlusScriptCompiler.exe"
-SET OUTPUT_PATH=D:\@Persona Modding tools\Mod Compendium\Mods\Persona3\Persona 3 FES Mod Menu
-SET PAKPACK="D:\@Persona Modding tools\PAKPack\PAKPack.exe"
+SET COMPILER="path\to\AtlusScriptCompiler\Tool\AtlusScriptCompiler.exe"
+SET OUTPUT_PATH=path\to\Mod Compendium\Mods\Persona3\Persona 3 FES Mod Menu
+SET PAKPACK="path\to\PAKPack\PAKPack.exe"
 
 IF NOT EXIST "%OUTPUT_PATH%" MKDIR "%OUTPUT_PATH%"
 IF NOT EXIST "%OUTPUT_PATH%\Data" MKDIR "%OUTPUT_PATH%\Data"
