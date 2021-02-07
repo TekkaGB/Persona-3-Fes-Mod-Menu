@@ -14,6 +14,7 @@
 [f 0 8 -258][f 1 31]Change Date[e]
 [f 0 8 -258][f 1 31]                    Add Member[e]
 [f 0 8 -258][f 1 31]Remove Member[e]
+[f 0 8 -258][f 1 31]                    Font Test[e]
 
 [sel Item_Group]
 [f 0 8 -258][f 1 31]Weapon[e]
@@ -165,3 +166,5 @@
 [msg FlagConfirmation]
 [f 0 8 -258][f 1 31]Flag [f 0 3 0] set to [f 0 3 1][n][e]
 
+[msg FontTest [Font Testing]]
+[f 0 8 -258][f 1 31]ABCDEFGHIJKLMNOPQRSTUVWXYZ[n]abcdefghijklmnopqrstuvwxyz[n]1234567890-_.:,;|!"#$%&/()=?+*{}^\<>`~'@[n][f 0 4][e]

@@ -83,6 +83,9 @@ int Misc_Menu_Display()
 			case 6:
 				Remove_Member();
 				break;
+			case 7:
+				Font_Test();
+				break;
 			case 19:
 				CLOSE_MSG_WIN();
 				return 1;
@@ -104,7 +107,7 @@ void SetItem()
 	int id = Get_Number(3, Select_Weapon + select);
 	if (id == -1)
 		return;
-	SET_MSG_VAR( 0, group + id, 3 )
+	SET_MSG_VAR( 0, group + id, 3 );
 	SET_MSG_VAR( 1, GET_ITEM(1, group + id), 0);
 	MSG(Confirm_Item);
 	SET_SEL_CHOICE_KEYBIND( 6, 1 );
@@ -114,7 +117,7 @@ void SetItem()
 	int amount = Get_Number( 2, SetAmount );
 	if (amount == -1)
 		return;
-	SET_ITEM(1, group + id, amount)
+	SET_ITEM(1, group + id, amount);
 }
 
 void MaxSocialStats()
@@ -688,4 +691,9 @@ int Get_Number(int digitNum, int helpText)
 		goto tryagain;
 	
 	return(digit);
+}
+
+void Font_Test()
+{
+	MSG( FontTest );
 }
