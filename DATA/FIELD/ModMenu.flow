@@ -180,9 +180,9 @@ void SetYen()
 	}
 	int current = GET_YEN();
 	if (yen < current)
-		REMOVE_YEN(current-yen);
+		REMOVE_YEN(current - yen);
 	else if (yen > current)
-		GIVE_YEN(yen-current);
+		GIVE_YEN(yen - current);
 }
 
 int Call_Menu_Display()

@@ -11,7 +11,7 @@
 
 import( "BASE_FIELD.BF" );
 import( "../ModMenu.flow" );
-import ( "FIELD.BF.msg" );
+import( "FIELD.BF.msg" );
 
 // 
 // Script-level variable definitions
@@ -26,48 +26,10 @@ void field_order_party_hook()
 	OPEN_MSG_WIN();
 	MSG( Choose );
 	SET_SEL_CHOICE_KEYBIND(6,20);
-	int select = SEL( NewPrompt );
+	int selection = SEL( NewPrompt );
 	CLOSE_MSG_WIN();
-	if (select == 0)
-	{
+	if (selection == 0)
 		ModMenuDisplay(0);
-	)
-	else if (select == 1)
-	{
-		if ( FUNCTION_01E9() == 1 && BIT_CHK( 0 + 0x0400 + 0x0800 + 498 ) == 1 )
-		{
-			fes_order_party();
-			return;
-		}
-		else if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 507 ) == 1 )
-		{
-			tutorial_order_party();
-			return;
-		}
-		else if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 572 ) == 1 )
-		{
-			f031_operation();
-			return;
-		}
-		else if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 610 ) == 1 )
-		{
-			f052_operation();
-			return;
-		}
-		else if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 702 ) == 1 )
-		{
-			f034_operation();
-			return;
-		}
-		else if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 799 ) == 1 )
-		{
-			f035_operation();
-			return;
-		}
-		else if ( BIT_CHK( 0 + 0x0400 + 0x0800 + 498 ) == 1 )
-		{
-			tartaros_order_party();
-			return;
-		}
-	}
+	if (selection == 1)
+		field_order_party_unhooked();
 }
