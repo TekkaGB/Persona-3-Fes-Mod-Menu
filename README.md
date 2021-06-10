@@ -13,6 +13,7 @@ Mod menus for other Persona games were only called by the square button function
 - Set Yen
 - Save wherever you can access the Mod Menu.
 - Access the Fast Travel map.
+- Font test
 - More soon to come...
 Note: Printed flags are shown on TTY console
 
@@ -20,6 +21,7 @@ Note: Printed flags are shown on TTY console
 - Going to the Velvet Room in Tartarus/Abyssal of Time will bring you back to the entrance when leaving until I find the functions I need.
 - Cannot be used in conjunction with the pnach that enables the debug menu.  Don't fret though because the Mod Menu can do what the debug menu does plus more.  You can also turn the Flag on yourself in mod menu (4065)
 - Saving inside Tartarus with the Mod Menu then loading will place you in the first floor of the block rather than the floor you saved on.
+- Set Item only works on items and not any other category
 
 ## Usage
 You can use the [Mod Compendium](https://amicitia.github.io/post/modcompendium) to create modded archives containing the [latest compiled Release](https://github.com/ShrineFox/Persona-4-Golden-Mod-Menu/releases).
@@ -28,4 +30,4 @@ If you don't have your P3 FES setup for modding, I recommend using the HostFS me
 ## Compiling
 1. Download the latest build of TGE's [AtlusScriptCompiler](https://ci.appveyor.com/project/TGEnigma/atlusscripttoolchain/build/artifacts) ([source](https://github.com/TGEnigma/AtlusScriptToolchain)), which you can use to compile the **.flow** and **.msg** scripts **DATA\FIELD\SCRIPT\NPCCOMU.BF.flow**, **DATA\FIELD\SCRIPT\FIELD.BF.flow**, **DATA\FIELD\PACK\f007.bf.flow**, and **DATA\FIELD\PACK\f032.bf.flow** in this repository and recompile them into **.bf** format.
 2. Download this [P4G Library](https://github.com/Tupelov/Persona-Library) that includes some function names used in this menu. Extract it and overwrite the contents of the AtlusScriptTools\Libraries folder.
-3. To use the compiled bf's in-game, take out the extra .flow.bf at the end of the compiled files.  Also repack the f004.bf into F004\_010.PAC, f007.bf into F007\_002.PAC, f008.bf into F008\_003.PAC, and f032.bf into F032\_002.PAC using [Amicitia](https://github.com/TGEnigma/Amicitia/releases/tag/v1.9.5).
+3. To use the compiled bf's in-game, take out the extra .flow.bf at the end of the compiled files.  Also repack the f004.bf into F004\_010.PAC, f007.bf into F007\_002.PAC, f008.bf into F008\_003.PAC, and f032.bf into F032\_002.PAC using [Amicitia](https://github.com/TGEnigma/Amicitia/releases/tag/v1.9.5) if using Mod Compendium.  Otherwise just use Aemulus.

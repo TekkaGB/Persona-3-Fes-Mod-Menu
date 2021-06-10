@@ -1,0 +1,7 @@
+
+AtlusScriptCompiler\.log
+build/**
+build_local.bat
+build_aem_local.bat
+
+*.lnk
