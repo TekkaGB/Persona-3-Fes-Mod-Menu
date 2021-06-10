@@ -21,7 +21,7 @@ import( "FIELD.BF.msg" );
 void field_order_party_hook()
 {
 	FUNCTION_01E4();
-	if (GET_FLOOR_ID() == 0)
+	if (GET_FLOOR_ID() < 2)
 	{
 		ModMenuDisplay();
 		return;
