@@ -1,19 +1,15 @@
 import ( "ModMenu.msg" );
 
-// Used to hardcode overworld mod menu return points
-int gLocation;
-
 // Open menu
-void ModMenuDisplay(int location)
+void ModMenuDisplay()
 {
-	gLocation = location;
 	OPEN_MSG_WIN();
 	
 	while (true)
 	{
 		MSG( Mod );
-		SET_SEL_CHOICE_KEYBIND(6,20);
-		SET_SEL_CHOICE_KEYBIND(7,20);
+		SEL_CHK_PAD(6,20);
+		SEL_CHK_PAD(7,20);
 		int select = SEL( Mod_Menu );
 		switch (select)
 		{
@@ -54,8 +50,8 @@ int Misc_Menu_Display()
 	while (true)
 	{
 		MSG( Misc );
-		SET_SEL_CHOICE_KEYBIND(6,20);
-		SET_SEL_CHOICE_KEYBIND(7,19);
+		SEL_CHK_PAD(6,20);
+		SEL_CHK_PAD(7,19);
 		int select = SEL( Misc_Menu );
 		
 		switch (select)
@@ -86,6 +82,9 @@ int Misc_Menu_Display()
 			case 7:
 				Font_Test();
 				break;
+			case 8:
+				Test();
+				break;
 			case 19:
 				CLOSE_MSG_WIN();
 				return 1;
@@ -96,10 +95,30 @@ int Misc_Menu_Display()
 	return 0;
 }
 
+void Test()
+{
+	PUTSTR("30");
+	PUT(FUNCTION_0030());
+	PUTSTR("45");
+	PUT(FUNCTION_0045());
+	PUTSTR("46");
+	PUT(FUNCTION_0046());
+	PUTSTR("47");
+	PUT(FUNCTION_0047());
+	PUTSTR("5a");
+	PUT(FUNCTION_005A());
+	PUTSTR("5b");
+	PUT(FUNCTION_005B());
+	PUTSTR("5c");
+	PUT(FUNCTION_005C());
+	PUTSTR("83");
+	PUT(FUNCTION_0083());
+}
+
 void SetItem()
 {
 	MSG( Select_Item_Group );
-	SET_SEL_CHOICE_KEYBIND(6,20);
+	SEL_CHK_PAD(6,20);
 	int select = SEL( Item_Group );
 	if (select == 20)
 		return;
@@ -110,7 +129,7 @@ void SetItem()
 	SET_MSG_VAR( 0, group + id, 3 );
 	SET_MSG_VAR( 1, GET_ITEM(1, group + id), 0);
 	MSG(Confirm_Item);
-	SET_SEL_CHOICE_KEYBIND( 6, 1 );
+	SEL_CHK_PAD( 6, 1 );
 	select = SEL( YesNo );
 	if (select == 1)
 		return;
@@ -180,9 +199,9 @@ void SetYen()
 	}
 	int current = GET_YEN();
 	if (yen < current)
-		REMOVE_YEN(current-yen);
+		REMOVE_YEN(current - yen);
 	else if (yen > current)
-		GIVE_YEN(yen-current);
+		GIVE_YEN(yen - current);
 }
 
 int Call_Menu_Display()
@@ -190,8 +209,8 @@ int Call_Menu_Display()
 	while (true)
 	{
 		MSG( Call );
-		SET_SEL_CHOICE_KEYBIND(6,20);
-		SET_SEL_CHOICE_KEYBIND(7,19);
+		SEL_CHK_PAD(6,20);
+		SEL_CHK_PAD(7,19);
 		int select = SEL( Call_Menu );
 		
 		switch (select)
@@ -238,6 +257,8 @@ int Call_Menu_Display()
 int BattleSelect()
 {
 	int floor = GET_FLOOR_ID();
+	int field_major = GET_FIELD_MAJOR();
+	int field_minor = GET_FIELD_MINOR();
 	int major = Get_Number(3, SelectID3);
 	if (major == -1)
 	{
@@ -255,12 +276,8 @@ int BattleSelect()
 	FUNCTION_01A5();
 	if (floor != 0) // return to current tartarus floor
 		CALL_FLOOR( floor );
-	else if (gLocation == 1)
-		CALL_FIELD( 6, 3, 3, 0 ); // return to student with glasses
-	else if (gLocation == 2)
-		CALL_FIELD( 7, 2, 0, 0 ); // return to dorm entrance
-	else if (gLocation == 3)
-		CALL_FIELD( 4, 10, 8, 0 ); // return to dorm entrance (answer)
+	else
+		CALL_FIELD(field_major, field_minor, 0, 0);
 	return 1;
 }
 
@@ -282,6 +299,8 @@ int DungeonSelect()
 int MovieSelect()
 {
 	int floor = GET_FLOOR_ID();
+	int field_major = GET_FIELD_MAJOR();
+	int field_minor = GET_FIELD_MINOR();
 	int major = Get_Number(2, SelectID2);
 	if (major == -1)
 	{
@@ -296,18 +315,16 @@ int MovieSelect()
 	FADE_SYNC();
 	if (floor != 0)
 		CALL_FLOOR( floor );
-	else if (gLocation == 1)
-		CALL_FIELD( 6, 3, 3, 0 );
-	else if (gLocation == 2)
-		CALL_FIELD( 7, 2, 0, 0 );
-	else if (gLocation == 3)
-		CALL_FIELD( 4, 10, 8, 0 ); // return to dorm entrance (answer)
+	else
+		CALL_FIELD( field_major, field_minor, 0, 0 );
 	return 1;
 }
 
 int EventSelect()
 {
 	int floor = GET_FLOOR_ID();
+	int field_major = GET_FIELD_MAJOR();
+	int field_minor = GET_FIELD_MINOR();
 	int major = Get_Number(3, SelectMajor);
 	if (major == -1)
 	{
@@ -327,12 +344,8 @@ int EventSelect()
 	FADE_SYNC();
 	if (floor != 0)
 		CALL_FLOOR( floor );
-	else if (gLocation == 1)
-		CALL_FIELD( 6, 3, 3, 0 );
-	else if (gLocation == 2)
-		CALL_FIELD( 7, 2, 0, 0 );
-	else if (gLocation == 3)
-		CALL_FIELD( 4, 10, 8, 0 ); // return to dorm entrance (answer)
+	else
+		CALL_FIELD( field_major, field_minor, 0, 0 );
 	return 1;
 }
 
@@ -369,8 +382,8 @@ int Flag_Menu_Display()
 	while (true)
 	{
 		MSG( Flag );
-		SET_SEL_CHOICE_KEYBIND(6,20);
-		SET_SEL_CHOICE_KEYBIND(7,19);
+		SEL_CHK_PAD(6,20);
+		SEL_CHK_PAD(7,19);
 		int select = SEL( Flag_Menu );
 		
 		switch (select)
@@ -448,7 +461,7 @@ void ToggleBit()
 	SET_MSG_VAR(0, major, 0);
 	SET_MSG_VAR(1, flag, 0);
 	MSG( CurrentFlag );
-	SET_SEL_CHOICE_KEYBIND(6,3);
+	SEL_CHK_PAD(6,3);
 	SET_MASK(mask);
 	int toggle = SEL(OnOff);
 	if (toggle == 0)
@@ -480,7 +493,7 @@ void ToggleRange()
 	{
 		return;
 	}
-	SET_SEL_CHOICE_KEYBIND(6,3);
+	SEL_CHK_PAD(6,3);
 	int toggle = SEL(OnOff);
 	if (toggle < 2 )
 	{
@@ -499,8 +512,8 @@ void ToggleRange()
 int Facilities_Menu_Display()
 {
 	MSG( Facilities );
-	SET_SEL_CHOICE_KEYBIND(6,20);
-	SET_SEL_CHOICE_KEYBIND(7,19);
+	SEL_CHK_PAD(6,20);
+	SEL_CHK_PAD(7,19);
 	int select = SEL( Facilities_Menu );
 	if (select < 5)
 		CLOSE_MSG_WIN();
@@ -534,105 +547,92 @@ int Facilities_Menu_Display()
 void Accessory()
 {
 	int floor = GET_FLOOR_ID();
+	int field_major = GET_FIELD_MAJOR();
+	int field_minor = GET_FIELD_MINOR();
 	CALL_SFX( 2, 8 );
 	FLD_FUNCTION_0089( 10253, 0, 0, 0, 1 );
 	FADE( 2, 0 );
 	FADE_SYNC();
 	BIT_ON( 0 + 0x0400 + 0x0800 + 0x0400 + 0x0400 + 7 );
-	CALL_FACILITY( 1 );
+	CALL_FCL( 1 );
 	FUNCTION_002B();
 	BIT_OFF( 0 + 0x0400 + 0x0800 + 0x0400 + 0x0400 + 7 );
 	
-	if (floor != 0) // return to current tartarus floor
+	if (floor != 0) 
 		CALL_FLOOR( floor );
-	else if (gLocation == 1)
-		CALL_FIELD( 6, 3, 3, 0 ); // return to student with glasses
-	else if (gLocation == 2)
-		CALL_FIELD( 7, 2, 0, 0 ); // return to dorm entrance
-	else if (gLocation == 3)
-		CALL_FIELD( 4, 10, 8, 0 ); // return to dorm entrance (answer)
+	else
+		CALL_FIELD( field_major, field_minor, 0, 0 ); 
 }
 
 void Police()
 {
 	int floor = GET_FLOOR_ID();
-	
+	int field_major = GET_FIELD_MAJOR();
+	int field_minor = GET_FIELD_MINOR();
 	CALL_SFX( 2, 8 );
     FLD_FUNCTION_0089( 10252, 0, 0, 0, 1 );
     FADE( 2, 0 );
     FADE_SYNC();
 	BIT_ON( 0 + 0x0400 + 0x0800 + 0x0400 + 0x0400 + 7 );
-    CALL_FACILITY( 0 );
+    CALL_FCL( 0 );
     FUNCTION_002B();
     BIT_OFF( 0 + 0x0400 + 0x0800 + 0x0400 + 0x0400 + 7 );
 	if (floor != 0) // return to current tartarus floor
 		CALL_FLOOR( floor );
-	else if (gLocation == 1)
-		CALL_FIELD( 6, 3, 3, 0 ); // return to student with glasses
-	else if (gLocation == 2)
-		CALL_FIELD( 7, 2, 0, 0 ); // return to dorm entrance
-	else if (gLocation == 3)
-		CALL_FIELD( 4, 10, 8, 0 ); // return to dorm entrance (answer)
+	else
+		CALL_FIELD( field_major, field_minor, 0, 0 );
 }
 
 void Antique()
 {
 	int floor = GET_FLOOR_ID();
+	int field_major = GET_FIELD_MAJOR();
+	int field_minor = GET_FIELD_MINOR();
 	CALL_SFX( 2, 8 );
     FLD_FUNCTION_0089( 10250, 0, 0, 0, 1 );
     FADE( 2, 0 );
     FADE_SYNC();
     BIT_ON( 0 + 0x0400 + 0x0800 + 0x0400 + 0x0400 + 7 );
-    CALL_FACILITY( 4 );
+    CALL_FCL( 4 );
     FUNCTION_002B();
     BIT_OFF( 0 + 0x0400 + 0x0800 + 0x0400 + 0x0400 + 7 );
 	if (floor != 0) // return to current tartarus floor
 		CALL_FLOOR( floor );
-	else if (gLocation == 1)
-		CALL_FIELD( 6, 3, 3, 0 ); // return to student with glasses
-	else if (gLocation == 2)
-		CALL_FIELD( 7, 2, 0, 0 ); // return to dorm entrance
-	else if (gLocation == 3)
-		CALL_FIELD( 4, 10, 8, 0 ); // return to dorm entrance (answer)
+	else
+		CALL_FIELD( field_major, field_minor, 0, 0 );
 }
 
 void Pharmacy()
 {
 	int floor = GET_FLOOR_ID();
+	int field_major = GET_FIELD_MAJOR();
+	int field_minor = GET_FIELD_MINOR();
 	CALL_SFX( 2, 8 );
 	FLD_FUNCTION_0089( 10249, 0, 0, 0, 1 );
 	FADE( 2, 0 );
 	FADE_SYNC();
 	BIT_ON( 0 + 0x0400 + 0x0800 + 0x0400 + 0x0400 + 7 );
-	CALL_FACILITY( 2 );
+	CALL_FCL( 2 );
 	FUNCTION_002B();
 	BIT_OFF( 0 + 0x0400 + 0x0800 + 0x0400 + 0x0400 + 7 );
 	if (floor != 0) // return to current tartarus floor
 		CALL_FLOOR( floor );
-	else if (gLocation == 1)
-		CALL_FIELD( 6, 3, 3, 0 ); // return to student with glasses
-	else if (gLocation == 2)
-		CALL_FIELD( 7, 2, 0, 0 ); // return to dorm entrance
-	else if (gLocation == 3)
-		CALL_FIELD( 4, 10, 8, 0 ); // return to dorm entrance (answer)
+	else
+		CALL_FIELD( field_major, field_minor, 0, 0 );
 }
 
 void VelvetRoom()
 {
-	if (gLocation == 1)
-		BIT_ON(7001);
-	else if (gLocation == 2)
-		BIT_ON(7002);
-	else if (gLocation == 3)
-	{
-		BIT_ON(7003);
-		BIT_ON(4612);
-		BIT_ON(4614);
-	}
-	else if (gLocation == 0)
+	if (GET_FLOOR_ID() != 0)
 	{
 		BIT_ON(7000);
 		SET_CNT(999, GET_FLOOR_ID());
+	}
+	else
+	{
+		BIT_ON(7001);
+		SET_CNT(997, GET_FIELD_MAJOR());
+		SET_CNT(998, GET_FIELD_MINOR());
 	}
 	CALL_SFX( 2, 0x20 );
 	FLD_FUNCTION_0089( 10243, 1, 0, 0, 1 );
@@ -648,7 +648,7 @@ void FastTravel()
 	BIT_ON( 0 + 0x0400 + 0x0800 + 19 );
 	FADE( 1, 0 );
 	FADE_SYNC();
-	TOWN_MAP( 0 );
+	CALL_MAP( 0 );
 }
 
 // Save wherever you can call mod menu
@@ -674,7 +674,7 @@ int Get_Number(int digitNum, int helpText)
 	_OpenNumMenu:
 	while (n < digitNum)
 	{
-		SET_SEL_CHOICE_KEYBIND(6, 20);
+		SEL_CHK_PAD(6, 20);
 		int select = SEL( Num_Menu );
 		if (select == 20)
 			return -1;
@@ -686,7 +686,7 @@ int Get_Number(int digitNum, int helpText)
 	// Confirmation
 	SET_MSG_VAR(0, digit, 0);
     MSG( Confirmation );
-	SET_SEL_CHOICE_KEYBIND(6,1);
+	SEL_CHK_PAD(6,1);
 	if (SEL(YesNo) == 1)
 		goto tryagain;
 	

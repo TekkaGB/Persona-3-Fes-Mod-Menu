@@ -21,16 +21,20 @@ import ( "FIELD.BF.msg" );
 void field_order_party_hook()
 {
 	FUNCTION_01E4();
-	
+	if (GET_FLOOR_ID() == 0)
+	{
+		ModMenuDisplay();
+		return;
+	}
 	// Choose between mod menu and regular field menu
 	OPEN_MSG_WIN();
 	MSG( Choose );
-	SET_SEL_CHOICE_KEYBIND(6,20);
+	SEL_CHK_PAD(6,20);
 	int select = SEL( NewPrompt );
 	CLOSE_MSG_WIN();
 	if (select == 0)
 	{
-		ModMenuDisplay(0);
+		ModMenuDisplay();
 	)
 	else if (select == 1)
 	{

@@ -12,7 +12,7 @@ IF NOT EXIST "%OUTPUT_PATH%\DATA\FIELD\SCRIPT" MKDIR "%OUTPUT_PATH%\DATA\FIELD\S
 %COMPILER% DATA\FIELD\SCRIPT\NPCCOMU.BF.flow -Compile -OutFormat V1 -Library P3F -Encoding P3 -Out "%OUTPUT_PATH%\DATA\FIELD\SCRIPT\NPCCOMU.BF" -Hook
 %COMPILER% DATA\FIELD\SCRIPT\FIELD.BF.flow -Compile -OutFormat V1 -Library P3F -Encoding P3 -Out "%OUTPUT_PATH%\DATA\FIELD\SCRIPT\FIELD.BF" -Hook
 
-%COMPILER% DATA\FIELD\PACK\f004.bf.flow -Compile -OutFormat V1 -Library P3F -Encoding P3 -Out "%OUTPUT_PATH%\DATA\FIELD\PACK\F004_010\f004.BF" -Hook
-%COMPILER% DATA\FIELD\PACK\f007.bf.flow -Compile -OutFormat V1 -Library P3F -Encoding P3 -Out "%OUTPUT_PATH%\DATA\FIELD\PACK\F007_002\f007.BF" -Hook
-%COMPILER% DATA\FIELD\PACK\f008.bf.flow -Compile -OutFormat V1 -Library P3F -Encoding P3 -Out "%OUTPUT_PATH%\DATA\FIELD\PACK\F008_003\f008.BF" -Hook
-%COMPILER% DATA\FIELD\PACK\f032.bf.flow -Compile -OutFormat V1 -Library P3F -Encoding P3 -Out "%OUTPUT_PATH%\DATA\FIELD\PACK\F032_002\f032.BF" -Hook
+%COMPILER% DATA\FIELD\PACK\f004.bf.flow -Compile -OutFormat V1 -Library P3F -Encoding P3 -Out "%OUTPUT_PATH%\DATA\FIELD\PACK\F004_010\f004.bf" -Hook
+%COMPILER% DATA\FIELD\PACK\f007.bf.flow -Compile -OutFormat V1 -Library P3F -Encoding P3 -Out "%OUTPUT_PATH%\DATA\FIELD\PACK\F007_002\f007.bf" -Hook
+%COMPILER% DATA\FIELD\PACK\f008.bf.flow -Compile -OutFormat V1 -Library P3F -Encoding P3 -Out "%OUTPUT_PATH%\DATA\FIELD\PACK\F008_003\f008.bf" -Hook
+%COMPILER% DATA\FIELD\PACK\f032.bf.flow -Compile -OutFormat V1 -Library P3F -Encoding P3 -Out "%OUTPUT_PATH%\DATA\FIELD\PACK\F032_002\f032.bf" -Hook
