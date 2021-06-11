@@ -83,7 +83,7 @@ int Misc_Menu_Display()
 				Font_Test();
 				break;
 			case 8:
-				Test();
+				RELOAD_TBLS();
 				break;
 			case 19:
 				CLOSE_MSG_WIN();
@@ -93,26 +93,6 @@ int Misc_Menu_Display()
 		}
 	}
 	return 0;
-}
-
-void Test()
-{
-	PUTSTR("30");
-	PUT(FUNCTION_0030());
-	PUTSTR("45");
-	PUT(FUNCTION_0045());
-	PUTSTR("46");
-	PUT(FUNCTION_0046());
-	PUTSTR("47");
-	PUT(FUNCTION_0047());
-	PUTSTR("5a");
-	PUT(FUNCTION_005A());
-	PUTSTR("5b");
-	PUT(FUNCTION_005B());
-	PUTSTR("5c");
-	PUT(FUNCTION_005C());
-	PUTSTR("83");
-	PUT(FUNCTION_0083());
 }
 
 void SetItem()
